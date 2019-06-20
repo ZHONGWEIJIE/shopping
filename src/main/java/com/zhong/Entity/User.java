@@ -1,4 +1,4 @@
-package com.zhong.Entity;
+package com.zhong.entity;
 
 import java.io.Serializable;
 import java.util.List;

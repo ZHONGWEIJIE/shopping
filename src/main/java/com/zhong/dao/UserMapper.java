@@ -1,7 +1,7 @@
 package com.zhong.dao;
 
 
-import com.zhong.Entity.User;
+import com.zhong.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

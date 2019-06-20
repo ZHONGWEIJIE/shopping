@@ -1,6 +1,6 @@
-package com.zhong.Controller;
+package com.zhong.controller;
 
-import com.zhong.Entity.User;
+import com.zhong.entity.User;
 import com.zhong.dao.UserMapper;
 import com.zhong.utils.Result;
 
