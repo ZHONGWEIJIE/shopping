@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhong.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.zhong.entity.User">
+    <resultMap id="BaseResultMap" type="UserEntity">
         <id column="id" property="id" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="age" property="age" jdbcType="INTEGER" />
@@ -24,14 +24,15 @@
         WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.zhong.entity.User">
+    <insert id="insert" parameterType="UserEntity">
         INSERT INTO
         user
         (id,name,age)
         VALUES
         (#{id},#{name}, #{age})
     </insert>
-    <update id="update" parameterType="com.zhong.entity.User">
+
+    <update id="update" parameterType="UserEntity">
         UPDATE
         user
         SET
