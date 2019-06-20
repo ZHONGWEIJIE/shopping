@@ -1,8 +1,11 @@
 package com.zhong.entity;
 
+import org.apache.ibatis.type.Alias;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Alias("UserEntity")
 public class User implements Serializable {
 
     /**
