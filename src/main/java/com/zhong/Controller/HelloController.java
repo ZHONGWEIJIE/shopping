@@ -19,7 +19,7 @@ import java.util.Map;
 public class HelloController {
     @Resource
     private UserMapper userMapper;
-
+// git test
     @GetMapping(value = "/hello/{name}")
     public Result hello(@PathVariable String name, String number) {
         if (name.equals("11")) {
