@@ -9,10 +9,10 @@ public class User implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    public String id;
-    public int age;
-    public String name;
-    public List<User> userlist;
+    private String id;
+    private int age;
+    private String name;
+    private List<User> userlist;
 
     public String getId() {
         return id;
