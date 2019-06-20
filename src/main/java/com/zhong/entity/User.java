@@ -1,11 +1,8 @@
 package com.zhong.entity;
 
-import org.apache.ibatis.type.Alias;
-
 import java.io.Serializable;
 import java.util.List;
 
-@Alias("UserEntity")
 public class User implements Serializable {
 
     /**
@@ -15,7 +12,7 @@ public class User implements Serializable {
     private String id;
     private int age;
     private String name;
-    private List<User> userList;
+    private List<User> userlist;
 
     public String getId() {
         return id;
@@ -41,13 +38,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<User> getUserlist() {
+        return userlist;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUserlist(List<User> userlist) {
+        this.userlist = userlist;
     }
 
 }
-
