@@ -1,0 +1,19 @@
+package com.zhong.service;
+
+import com.zhong.entity.User;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public interface UserService {
+    User getUserInfoByUserId(int userId);
+    User checkLogin(int userId, String password, HttpServletResponse response);
+
+    /**
+     * 退出登录
+     *
+     * @param request  客户端请求
+     * @param response 服务器响应
+     */
+    void outLogin(HttpServletRequest request, HttpServletResponse response);
+}
