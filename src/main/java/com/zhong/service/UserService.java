@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface UserService {
-    User getUserInfoByUserId(int userId);
+    User getUserByUserId(int userId);
     User checkLogin(int userId, String password, HttpServletResponse response);
 
     /**

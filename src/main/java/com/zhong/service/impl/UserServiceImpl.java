@@ -4,13 +4,11 @@ import com.zhong.dao.UserDao;
 import com.zhong.dao.UserLoginDao;
 import com.zhong.entity.User;
 import com.zhong.service.UserService;
-import com.zhong.utils.DemoUtil;
 import com.zhong.utils.IdGen;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
@@ -22,7 +20,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserInfoByUserId(int userId) {
+    public User getUserByUserId(int userId) {
         return null;
     }
 
@@ -39,7 +37,7 @@ public class UserServiceImpl implements UserService {
         cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 3);
         response.addCookie(cookie);
-        return getUserInfoByUserId(userId);
+        return getUserByUserId(userId);
     }
 
     @Override
