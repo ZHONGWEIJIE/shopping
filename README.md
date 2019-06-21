@@ -48,9 +48,9 @@ params: { userId: xxx }
 ```text
 response - josndata:
   status: ture || 1
-  statusTxt: "删除成功!"
+  statusText: "删除成功!"
   or
   status: flase || 0
-  status: "删除失败!"
+  statusText: "删除失败!"
 ```
 
