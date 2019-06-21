@@ -2,7 +2,8 @@
 SQLyog Ultimate v12.3.1 (64 bit)
 MySQL - 5.7.23 : Database - shopping
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -205,3 +206,20 @@ CREATE TABLE `mmall_user` (
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+DROP TABLE IF EXISTS `mmall_guestbook`;
+CREATE TABLE `mmall_guestbook` (
+  `id` int(11) NOT NULL,
+  `ask_content` varchar(255) DEFAULT NULL COMMENT '询问内容',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `shop_id` int(11) DEFAULT NULL COMMENT '商品id',
+  `created_time` datetime DEFAULT NULL COMMENT '询问时间',
+  `is_reply` smallint(5) DEFAULT '0' COMMENT '是否回复',
+  `reply_content` varchar(255) DEFAULT NULL COMMENT '回复内容',
+  `reply_time` datetime DEFAULT NULL COMMENT '回复时间',
+  PRIMARY KEY (`id`),
+  KEY `ask_user` (`user_id`),
+  KEY `ask_product` (`shop_id`),
+  CONSTRAINT `ask_product` FOREIGN KEY (`shop_id`) REFERENCES `mmall_poduct` (`id`),
+  CONSTRAINT `ask_user` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='留言表';
