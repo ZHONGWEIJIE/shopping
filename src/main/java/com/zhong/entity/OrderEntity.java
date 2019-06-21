@@ -7,13 +7,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * 订单表
+ */
 @Alias("OrderEntity")
 public class OrderEntity {
 
     private int id;             /*订单id*/
     private int orderNo;       /*订单号*/
     private User userId;        /*用户id*/
-    private Shipping shippingId;    /*商品id*/
+    private Shipping shippingId;    /*地址id*/
     private int payment;        /*钱，单位是分*/
     private int paymentType;    /*支付类型，1为在线支付*/
     private int postage;        /*运费，单位是分*/
