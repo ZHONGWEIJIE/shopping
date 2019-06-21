@@ -3,6 +3,7 @@ package com.zhong.entity;
 import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Alias("UserEntity")
@@ -11,42 +12,149 @@ public class User implements Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
-    private String id;
-    private int age;
-    private String name;
-    private List<User> userlist;
 
-    public String getId() {
+    private int id;
+    private String username;
+    private String password;
+    private String email;
+    private String phone;
+    private String recipient;
+    private String question;
+    private String answer;
+    private int role;
+    private Date createTime;
+    private Date updateTime;
+    private short gender;
+
+    public User() {
+    }
+
+    public User(int id, String username, String password, String email, String phone, String recipient, String question, String answer, int role, Date createTime, Date updateTime, short gender) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.recipient = recipient;
+        this.question = question;
+        this.answer = answer;
+        this.role = role;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.gender = gender;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public List<User> getUserlist() {
-        return userlist;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserlist(List<User> userlist) {
-        this.userlist = userlist;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public short getGender() {
+        return gender;
+    }
+
+    public void setGender(short gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", recipient='" + recipient + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + answer + '\'' +
+                ", role=" + role +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", gender=" + gender +
+                '}';
+    }
 }
