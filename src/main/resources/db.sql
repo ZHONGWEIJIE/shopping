@@ -2,8 +2,7 @@
 SQLyog Ultimate v12.3.1 (64 bit)
 MySQL - 5.7.23 : Database - shopping
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -30,7 +29,10 @@ CREATE TABLE `mmall_cart` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '跟新时间',
   PRIMARY KEY (`id`),
-  KEY `user_id_index` (`user_id`) USING BTREE
+  KEY `user_id_index` (`user_id`) USING BTREE,
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `mmall_cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`),
+  CONSTRAINT `mmall_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `mmall_poduct` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='购物车表';
 
 /*Data for the table `mmall_cart` */
@@ -72,27 +74,14 @@ CREATE TABLE `mmall_order` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `order_no_index` (`order_no`) USING BTREE
+  UNIQUE KEY `order_no_index` (`order_no`) USING BTREE,
+  KEY `user_id` (`user_id`),
+  KEY `shipping_id` (`shipping_id`),
+  CONSTRAINT `mmall_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`),
+  CONSTRAINT `mmall_order_ibfk_2` FOREIGN KEY (`shipping_id`) REFERENCES `mmall_shipping` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 /*Data for the table `mmall_order` */
-/*Table structure for table `mmall_pay_info` */
-
-DROP TABLE IF EXISTS `mmall_pay_info`;
-
-CREATE TABLE `mmall_pay_info` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
-  `order_no` bigint(20) DEFAULT NULL COMMENT '订单号',
-  `pay_platform` int(10) DEFAULT NULL COMMENT '支付平台 1-支付宝 2-微信',
-  `platform_number` varchar(200) DEFAULT NULL COMMENT '支付流水号',
-  `platform_status` varchar(20) DEFAULT NULL COMMENT '支付状态',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付信息表';
-
-/*Data for the table `mmall_pay_info` */
 
 /*Table structure for table `mmall_order_item` */
 
@@ -112,11 +101,34 @@ CREATE TABLE `mmall_order_item` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `order_no_index` (`order_no`) USING BTREE,
-  KEY `order_no_user_id_index` (`user_id`,`order_no`) USING BTREE
+  KEY `order_no_user_id_index` (`user_id`,`order_no`) USING BTREE,
+  CONSTRAINT `mmall_order_item_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`),
+  CONSTRAINT `mmall_order_item_ibfk_2` FOREIGN KEY (`order_no`) REFERENCES `mmall_order` (`order_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='订单明细表';
 
 /*Data for the table `mmall_order_item` */
 
+/*Table structure for table `mmall_pay_info` */
+
+DROP TABLE IF EXISTS `mmall_pay_info`;
+
+CREATE TABLE `mmall_pay_info` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `order_no` bigint(20) DEFAULT NULL COMMENT '订单号',
+  `pay_platform` int(10) DEFAULT NULL COMMENT '支付平台 1-支付宝 2-微信',
+  `platform_number` varchar(200) DEFAULT NULL COMMENT '支付流水号',
+  `platform_status` varchar(20) DEFAULT NULL COMMENT '支付状态',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `order_no` (`order_no`),
+  CONSTRAINT `mmall_pay_info_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`),
+  CONSTRAINT `mmall_pay_info_ibfk_2` FOREIGN KEY (`order_no`) REFERENCES `mmall_order` (`order_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付信息表';
+
+/*Data for the table `mmall_pay_info` */
 
 /*Table structure for table `mmall_poduct` */
 
@@ -124,7 +136,7 @@ DROP TABLE IF EXISTS `mmall_poduct`;
 
 CREATE TABLE `mmall_poduct` (
   `id` int(11) NOT NULL COMMENT '商品id',
-  `category` int(11) NOT NULL COMMENT '分类id 对应mmall_categoryb表的主键',
+  `category_id` int(11) NOT NULL COMMENT '分类id 对应mmall_categoryb表的主键',
   `name` varchar(100) NOT NULL COMMENT '商品名称',
   `subtitle` varchar(200) DEFAULT NULL COMMENT '商品副标题',
   `main_image` varchar(500) DEFAULT NULL COMMENT '产品主图 url路径',
@@ -135,16 +147,18 @@ CREATE TABLE `mmall_poduct` (
   `status` int(6) DEFAULT '1' COMMENT '商品状态 1-在售 2-下架 3-删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `mmall_poduct_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `mmall_category` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品表';
 
 /*Data for the table `mmall_poduct` */
 
-/*Table structure for table `mmall_shpping` */
+/*Table structure for table `mmall_shipping` */
 
-DROP TABLE IF EXISTS `mmall_shpping`;
+DROP TABLE IF EXISTS `mmall_shipping`;
 
-CREATE TABLE `mmall_shopping` (
+CREATE TABLE `mmall_shipping` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `receiver_name` varchar(20) DEFAULT NULL COMMENT '收货名称',
@@ -157,10 +171,12 @@ CREATE TABLE `mmall_shopping` (
   `receiver_zip` varchar(6) DEFAULT NULL COMMENT '邮箱',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `mmall_shipping_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mmall_user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='收货地址表';
 
-/*Data for the table `mmall_shpping` */
+/*Data for the table `mmall_shipping` */
 
 /*Table structure for table `mmall_user` */
 
