@@ -1,14 +1,15 @@
 # shopping
 
-- [shopping](#shopping)
-  - [接口声明](#接口声明)
-    - [1. 用户列表](#1-用户列表)
-      - [1.1 接口：获取用户列表](#11-接口获取用户列表)
-      - [1.2 接口：删除用户](#11-接口删除用户)
+- [接口声明](#接口声明)
+  - [1. 用户相关](#1-用户相关)
+    - [1.1 接口：获取用户列表](#11-接口获取用户列表)
+    - [1.2 接口：删除用户](#12-接口删除用户)
+  - [2. 商品相关](#2-商品相关)
+    - [2.1 接口：获取商品类型](#21-接口获取商品类型)
 
 ## 接口声明
 
-### 1. 用户列表
+### 1. 用户相关
 
 #### 1.1 接口：获取用户列表
 
@@ -17,7 +18,7 @@ url: <http://localhost/shopping/customer/userData>
 params: null
 
 ```text
-response - josndata:
+response - jsondata:
 
 status: 200
 user: [
@@ -46,7 +47,7 @@ url: <http://localhost/shopping/customer/deletaUser?userId=xxx>
 params: { userId: xxx }
 
 ```text
-response - josndata:
+response - jsondata:
   status: ture || 1
   statusText: "删除成功!"
   or
@@ -54,3 +55,28 @@ response - josndata:
   statusText: "删除失败!"
 ```
 
+### 2. 商品相关
+
+#### 2.1 接口：获取商品类型
+
+url: <http://localhost/shopping/product/productType>
+
+params: null
+
+```text
+response - jsondata:
+
+status: 200
+productType: [
+  {
+    type(商品类型): "xxx"
+  },
+  {
+  type(商品类型): "xxx"
+  },
+  {
+  type(商品类型): "xxx"
+  },
+  ...
+]
+```
