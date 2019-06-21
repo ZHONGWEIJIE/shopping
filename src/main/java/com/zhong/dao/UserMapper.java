@@ -13,10 +13,10 @@ public interface UserMapper {
 
     User getOne(Integer id);
 
-    void insert(User user);
-
-    void update(User user);
-
-    void delete(Integer id);
+//    void insert(User user);
+//
+//    void update(User user);
+//
+//    void delete(Integer id);
 
 }
