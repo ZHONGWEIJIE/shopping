@@ -1,9 +1,11 @@
 package com.zhong.shopping;
 
+import com.zhong.utils.Result;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ public class ShoppingApplicationTests {
 
 	@Resource
 	StringRedisTemplate stringRedisTemplate;
+
+
 
 	@Test
 	public void contextLoads() {
@@ -48,5 +52,10 @@ public class ShoppingApplicationTests {
 		stringRedisTemplate.opsForValue().set("test", "100",10,TimeUnit.SECONDS);
 	}
 
+
+	@Test
+	public void resultTest(){
+		Result.makeResult(null,null);
+	}
 
 }

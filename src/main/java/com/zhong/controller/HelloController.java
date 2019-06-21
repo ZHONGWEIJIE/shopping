@@ -4,6 +4,7 @@ import com.zhong.entity.User;
 import com.zhong.dao.UserMapper;
 import com.zhong.utils.Result;
 
+import com.zhong.utils.StatysInfo;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +24,10 @@ public class HelloController {
     @GetMapping(value = "/hello/{name}")
     public Result hello(@PathVariable String name, String number) {
         if (name.equals("11")) {
-            return Result.makeFailResult("Bye");
+            return Result.makeResult("Bye",new StatysInfo());
         }
 
-        return Result.makeSuccessResult("hello");
+        return Result.makeResult("hello",new StatysInfo());
     }
 
 
@@ -47,6 +48,8 @@ public class HelloController {
         return  result;
 
     }
+
+
 
 
 }
