@@ -76,30 +76,6 @@ CREATE TABLE `mmall_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 /*Data for the table `mmall_order` */
-
-/*Table structure for table `mmall_order_item` */
-
-DROP TABLE IF EXISTS `mmall_order_item`;
-
-CREATE TABLE `mmall_order_item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单子表id',
-  `user_id` int(11) DEFAULT NULL,
-  `order_id` bigint(20) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL COMMENT '商品id',
-  `product_nme` varchar(100) DEFAULT NULL COMMENT '商品名称',
-  `product_image` varchar(500) DEFAULT NULL COMMENT '商品图片地址',
-  `current_unit_price` int(20) DEFAULT NULL COMMENT '生成订单时的商品单价 单位的分',
-  `quantity` int(10) DEFAULT NULL COMMENT '商品数量',
-  `total_price` int(20) DEFAULT NULL COMMENT '商品总价 单位是分',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `order_no_index` (`order_no`) USING BTREE,
-  KEY `order_no_user_id_index` (`user_id`,`order_on`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='订单明细表';
-
-/*Data for the table `mmall_order_item` */
-
 /*Table structure for table `mmall_pay_info` */
 
 DROP TABLE IF EXISTS `mmall_pay_info`;
@@ -117,6 +93,30 @@ CREATE TABLE `mmall_pay_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付信息表';
 
 /*Data for the table `mmall_pay_info` */
+
+/*Table structure for table `mmall_order_item` */
+
+DROP TABLE IF EXISTS `mmall_order_item`;
+
+CREATE TABLE `mmall_order_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单子表id',
+  `user_id` int(11) DEFAULT NULL,
+  `order_no` bigint(20) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL COMMENT '商品id',
+  `product_name` varchar(100) DEFAULT NULL COMMENT '商品名称',
+  `product_image` varchar(500) DEFAULT NULL COMMENT '商品图片地址',
+  `current_unit_price` int(20) DEFAULT NULL COMMENT '生成订单时的商品单价 单位的分',
+  `quantity` int(10) DEFAULT NULL COMMENT '商品数量',
+  `total_price` int(20) DEFAULT NULL COMMENT '商品总价 单位是分',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `order_no_index` (`order_no`) USING BTREE,
+  KEY `order_no_user_id_index` (`user_id`,`order_no`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='订单明细表';
+
+/*Data for the table `mmall_order_item` */
+
 
 /*Table structure for table `mmall_poduct` */
 
