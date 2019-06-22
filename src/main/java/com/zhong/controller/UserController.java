@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/shopping")
 public class UserController {
-    @Resource
-    private UserService userService;
-
-
-
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/outLogin")
-    public String outLogin(HttpServletRequest request, HttpServletResponse response) {
-        userService.outLogin(request, response);
-        return "redirect:/shopping/login";
-    }
+//    @Resource
+//    private UserService userService;
+//
+//
+//
+//    @RequestMapping(value = "/login")
+//    public String login() {
+//        return "login";
+//    }
+//
+//    @RequestMapping(value = "/outLogin")
+//    public String outLogin(HttpServletRequest request, HttpServletResponse response) {
+//        userService.outLogin(request, response);
+//        return "redirect:/shopping/login";
+//    }
 }

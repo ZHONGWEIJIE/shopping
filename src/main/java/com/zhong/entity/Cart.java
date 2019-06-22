@@ -8,9 +8,9 @@ import java.util.Date;
 
 @Alias("CartEntity")
 public class Cart {
-    private int id;
-    private int userId;
-    private int productId;
+    private String id;
+    private User userId;
+    private Product productId;
     private int quantity;
     private int checked;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -18,27 +18,27 @@ public class Cart {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateDate;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
-    public int getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 
@@ -76,8 +76,8 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "cart{" +
-                "id=" + id +
+        return "Cart{" +
+                "id='" + id + '\'' +
                 ", userId=" + userId +
                 ", productId=" + productId +
                 ", quantity=" + quantity +
@@ -85,5 +85,18 @@ public class Cart {
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
                 '}';
+    }
+
+    public Cart() {
+    }
+
+    public Cart(String id, User userId, Product productId, int quantity, int checked, Date createDate, Date updateDate) {
+        this.id = id;
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.checked = checked;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 }

@@ -10,11 +10,9 @@ import java.util.List;
 @Alias("UserEntity")
 public class User implements Serializable {
 
-    /**
-     *
-     */
 
-    private int id;
+
+    private String id;
     private String username;
     private String password;
     private String email;
@@ -23,16 +21,16 @@ public class User implements Serializable {
     private String question;
     private String answer;
     private int role;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
     private short gender;
 
     public User() {
     }
 
-    public User(int id, String username, String password, String email, String phone, String recipient, String question, String answer, int role, Date createTime, Date updateTime, short gender) {
+    public User(String id, String username, String password, String email, String phone, String recipient, String question, String answer, int role, Date createTime, Date updateTime, short gender) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -47,11 +45,11 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -146,7 +144,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

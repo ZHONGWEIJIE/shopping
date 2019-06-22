@@ -11,10 +11,10 @@ import java.util.Date;
  * 订单表
  */
 @Alias("OrderEntity")
-public class OrderEntity {
+public class Order {
 
-    private int id;             /*订单id*/
-    private int orderNo;       /*订单号*/
+    private String id;             /*订单id*/
+    private Order orderNo;       /*订单号*/
     private User userId;        /*用户id*/
     private Shipping shippingId;    /*地址id*/
     private int payment;        /*钱，单位是分*/
@@ -34,20 +34,39 @@ public class OrderEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date updateTime;    /*更新时间*/
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", orderNo=" + orderNo +
+                ", userId=" + userId +
+                ", shippingId=" + shippingId +
+                ", payment=" + payment +
+                ", paymentType=" + paymentType +
+                ", postage=" + postage +
+                ", status=" + status +
+                ", paymentTime=" + paymentTime +
+                ", sendTime=" + sendTime +
+                ", endTime=" + endTime +
+                ", closeTime=" + closeTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getOrderNo() {
+    public Order getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(int orderNo) {
+    public void setOrderNo(Order orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -147,23 +166,23 @@ public class OrderEntity {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "OrderEntity{" +
-                "id=" + id +
-                ", orderNo=" + orderNo +
-                ", userId=" + userId +
-                ", shippingId=" + shippingId +
-                ", payment=" + payment +
-                ", paymentType=" + paymentType +
-                ", postage=" + postage +
-                ", status=" + status +
-                ", paymentTime=" + paymentTime +
-                ", sendTime=" + sendTime +
-                ", endTime=" + endTime +
-                ", closeTime=" + closeTime +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public Order() {
+    }
+
+    public Order(String id, Order orderNo, User userId, Shipping shippingId, int payment, int paymentType, int postage, int status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
+        this.id = id;
+        this.orderNo = orderNo;
+        this.userId = userId;
+        this.shippingId = shippingId;
+        this.payment = payment;
+        this.paymentType = paymentType;
+        this.postage = postage;
+        this.status = status;
+        this.paymentTime = paymentTime;
+        this.sendTime = sendTime;
+        this.endTime = endTime;
+        this.closeTime = closeTime;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 }
