@@ -1,82 +1,133 @@
-# shopping
+# Shopping 项目
 
-- [接口声明](#接口声明)
-  - [1. 用户相关](#1-用户相关)
-    - [1.1 接口：获取用户列表](#11-接口获取用户列表)
-    - [1.2 接口：删除用户](#12-接口删除用户)
-  - [2. 商品相关](#2-商品相关)
-    - [2.1 接口：获取商品类型](#21-接口获取商品类型)
+- [Shopping 项目](#shopping-项目)
+  - [接口声明约定](#接口声明约定)
+    - [HTTP 请求](#http-请求)
+    - [接口参数](#接口参数)
+    - [未约定](#未约定)
+  - [接口用例](#接口用例)
+    - [用户管理](#用户管理)
+    - [商品管理](#商品管理)
+    - [订单管理](#订单管理)
+    - [留言管理](#留言管理)
 
-## 接口声明
+## 接口声明约定
 
-### 1. 用户相关
+### HTTP 请求
 
-#### 1.1 接口：获取用户列表
+- `GET`：获取数据
+- `POST`：增加 / 修改数据
+- `DELETE`：删除数据
 
-url: <http://localhost/shopping/customer/userData>
+示例：`GET /user` 获取用户，`POST /product`：新增 / 修改商品，`DELETE /user`：删除用户
 
-params: null
+### 接口参数
 
-```text
-response - jsondata:
+| 字段名       | 字段说明                                                     |
+| ------------ | ------------------------------------------------------------ |
+| `data`       | **业务数据**建议始终返回一个 `Object` JSON 数据类型，以便于扩展字段。例如：用户数据应该返回 `{ "user": { "name": "test" }}`，而不是直接返回 `{ "name": "test"}`。 |
+|`url`|**业务方法**由后端完成相应接口方法后，在此处填上相应接口 `url`。|
+| `status`     | **状态码**必须是 `>= 0` 的 `Number` JSON 整数。`200` 表示请求处理成功，此时可忽略 `status` 字段；非 `200` 表示发生错误时的错误码，此时可以省略 `data` 字段，并视情况输出 `statusInfo` 字段作为补充信息。 |
+| `statusInfo` | **状态信息**建议始终返回一个 `Object` JSON 数据类型，包含 `message` 和 `detail` 字段。`message` 字段作为接口处理失败时，**给予用户的友好的提示信息**，即所有给用户的提示信息都统一由后端来处理。`detail` 字段用来放置接口处理失败时的详细错误信息，只是为了方便排查错误，前端无需使用。 |
 
-status: 200
-user: [
-  {
-    userId(用户id): "1000",
-    email(用户邮箱): "10000@qq.com",
-    gender(用户性别): "男",
-    name(用户昵称): "John",
-    recipient(收件人名称): "Hi",
-    phone(用户电话): "1234567",
-    age(用户年龄): "31",
-    address(用户收获地址):
-      "My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park."
-  },
-  {
-    ...
-  },
-  ...
-]
-```
+### 未约定
 
-#### 1.2 接口：删除用户
+分页参数和分页信息
 
-url: <http://localhost/shopping/customer/deletaUser?userId=xxx>
+- 限制只返回 N 条数据（`limit` 参数）
+- 控制每页的数据条数（`pageSize` 参数）
+- 加载某一页的数据（`page` 参数）
+  - 第一页是从 `0` 开始还是从 `1` 开始
+- 分页信息包含什么 (`total`, `page`, `pageSize`)
+- 分页信息何时表明已经是最后一页：
+  - 请求某页数据时返回的数据条数 < `pageSize`
+  - 请求某页数据时返回的数据条数 = `0`
+  - 如果碰巧最后一页有 `pageSize` 条数据，前端无法通过数据条数来判断已经处于最后一页
 
-params: { userId: xxx }
+---
 
-```text
-response - jsondata:
-  status: ture || 1
-  statusText: "删除成功!"
-  or
-  status: flase || 0
-  statusText: "删除失败!"
-```
+## 接口用例
 
-### 2. 商品相关
+### 用户管理
 
-#### 2.1 接口：获取商品类型
+| case|获取用户列表|
+| ----------- | ----- |
+| HTTP method | `GET /userList` |
+| data        | { userList: { 用户id, 用户Email, 用户昵称, 性别, 年龄, 收件人, 联系电话, 收货地址 }`*` } |
+| url         |       |
+| status/statusInfo |       |
 
-url: <http://localhost/shopping/product/productType>
+| case              | 获取用户信息                                |
+| ----------------- | ------------------------------------------- |
+| HTTP method       | `GET /userInfo`                             |
+| data              | { userInfo: { *与用户自身相关的表字段*  } } |
+| url               |                                             |
+| status/statusInfo |                                             |
 
-params: null
+| case              | 删除用户              |
+| ----------------- | --------------------- |
+| HTTP method       | `DELETE /user?userId` |
+| data              | 无                    |
+| url               |                       |
+| status/statusInfo |                       |
 
-```text
-response - jsondata:
+| case              | 查询用户                                                     |
+| ----------------- | ------------------------------------------------------------ |
+| HTTP method       | `GET /user?keyWord`                                          |
+| data              | { userList: { 用户id, 用户Email, 用户昵称, 性别, 年龄, 收件人, 联系电话, 收货地址 }`*` } |
+| url               |                                                              |
+| status/statusInfo |                                                              |
 
-status: 200
-productType: [
-  {
-    type(商品类型): "xxx"
-  },
-  {
-  type(商品类型): "xxx"
-  },
-  {
-  type(商品类型): "xxx"
-  },
-  ...
-]
-```
+| case              | 更改用户信息          |
+| ----------------- | --------------------- |
+| HTTP method       | `POST /user?userInfo` |
+| data              | 无                    |
+| url               |                       |
+| status/statusInfo |                       |
+
+| case              | 更改用户密码          |
+| ----------------- | --------------------- |
+| HTTP method       | `POST /user?password` |
+| data              | 无                    |
+| url               |                       |
+| status/statusInfo |                       |
+
+---
+
+### 商品管理
+
+| case              | 获取商品列表                                                 |
+| ----------------- | ------------------------------------------------------------ |
+| HTTP method       | `GET /productList`                                           |
+| data              | { productList: { 商品id, 商品类目id, 商品标题, 商品描述, 商品图片 }`*` } |
+| url               |                                                              |
+| status/statusInfo |                                                              |
+
+| case              | 获取商品信息                                   |
+| ----------------- | ---------------------------------------------- |
+| HTTP method       | `GET /productInfo`                             |
+| data              | { productInfo: { 与商品自身相关的表字段 }`*` } |
+| url               |                                                |
+| status/statusInfo |                                                |
+
+| case              | 新增 / 更新商品信息         |
+| ----------------- | --------------------------- |
+| HTTP method       | `POST /product?productInfo` |
+| data              | 无                          |
+| url               |                             |
+| status/statusInfo |                             |
+
+| case              | 删除商品信息                    |
+| ----------------- | ------------------------------- |
+| HTTP method       | `DELETE /productInfo?productId` |
+| data              | 无                              |
+| url               |                                 |
+| status/statusInfo |                                 |
+
+---
+
+### 订单管理
+
+---
+
+### 留言管理
