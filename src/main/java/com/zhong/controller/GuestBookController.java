@@ -1,0 +1,57 @@
+package com.zhong.controller;
+
+import com.zhong.entity.GuestBook;
+import com.zhong.service.GuestBookService;
+import com.zhong.utils.Result;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/GuestBook")
+public class GuestBookController {
+
+    @Resource
+    GuestBookService guestBookService;
+
+    @GetMapping({"/getAll/{adminId}" })
+    public Result selectGuestBook(@PathVariable String adminId){
+        if (guestBookService.isAdmin(adminId)) {
+            Map<String, Object> map = guestBookService.selectGuestBookByAdminId(adminId);
+            return Result.makeSuccessResult(map);
+        }
+        else {
+            return Result.makePermissionDeniedResult();
+        }
+    }
+
+    @GetMapping({"/reply/{determine}" })
+    public Result selectGuestBookByAdminIdAndIsReply(@PathVariable String determine,String adminId){
+        Map<String, Object> map = new HashMap<>();
+        if (determine.equals("true")||determine=="true"){
+            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,1));
+            return Result.makeSuccessResult(map);
+        }else if (determine.equals("false")||determine == "false"){
+            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,0));
+            return Result.makeSuccessResult(map);
+        }else {
+            map.put("guestBookList",new ArrayList<GuestBook>());
+            return Result.makeResult("404", "404 Not Found",map);
+        }
+    }
+
+    @PostMapping({"/reply/content" })
+    public Result updateReplyById(String id,String content){
+        Map<String, Object> map = new HashMap<>();
+        if (guestBookService.updateReplyById(id,content)){
+            return Result.makeSuccessResult("回复成功");
+        }else {
+            return  Result.makeFailResult("回复失败");
+        }
+
+    }
+}

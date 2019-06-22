@@ -8,13 +8,13 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, age
+        id, username,password,email,phone,recipient,question,answer,role,create_time,update_time,gender
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
-        FROM user
+        FROM mmall_user
     </select>
 
     <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
