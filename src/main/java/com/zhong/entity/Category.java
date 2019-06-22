@@ -21,20 +21,7 @@ public class Category {
     @JsonFormat(pattern ="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
     @JsonFormat(pattern ="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date udateTime;
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id='" + id + '\'' +
-                ", parentId='" + parentId + '\'' +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                ", sortOrder=" + sortOrder +
-                ", createTime=" + createTime +
-                ", udateTime=" + udateTime +
-                '}';
-    }
+    private Date updateTime;
 
     public String getId() {
         return id;
@@ -84,21 +71,41 @@ public class Category {
         this.createTime = createTime;
     }
 
-    public Date getUdateTime() {
-        return udateTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUdateTime(Date udateTime) {
-        this.udateTime = udateTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public Category(String id, String parentId, String name, short status, int sortOrder, Date createTime, Date udateTime) {
+    public Category() {
+    }
+
+    public Category(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id='" + id + '\'' +
+                ", parentId='" + parentId + '\'' +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", sortOrder=" + sortOrder +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public Category(String id, String parentId, String name, short status, int sortOrder, Date createTime, Date updateTime) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.status = status;
         this.sortOrder = sortOrder;
         this.createTime = createTime;
-        this.udateTime = udateTime;
+        this.updateTime = updateTime;
     }
 }

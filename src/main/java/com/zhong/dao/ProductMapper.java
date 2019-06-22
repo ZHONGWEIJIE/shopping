@@ -1,9 +1,11 @@
 package com.zhong.dao;
 
 import com.zhong.entity.Product;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface ProductMapper    {
 
     void insertProduct(Product product);
@@ -12,5 +14,5 @@ public interface ProductMapper    {
      * 根据分类id获取商品
      * @return 商品列表
      */
-    List<Product> getProductListByCategoryId();
+    List<Product> getProductList();
 }
