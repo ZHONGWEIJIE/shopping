@@ -1,28 +1,30 @@
 package com.zhong.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-
-public class    GuestBook {
-    private int id;
+@Alias("GuestBookEntity")
+public class GuestBook {
+    private String id;
     private  String askContent;
-    private int userId;
-    private int ProductId;
+    private User userId;
+    private Product ProductId;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     private int isReply;
     private String replyContent;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern ="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date replyTime;
-    private int adminId;
+    private String adminId;
 
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,19 +36,19 @@ public class    GuestBook {
         this.askContent = askContent;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
-    public int getProductId() {
+    public Product getProductId() {
         return ProductId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Product productId) {
         ProductId = productId;
     }
 
@@ -82,18 +84,18 @@ public class    GuestBook {
         this.replyTime = replyTime;
     }
 
-    public int getAdminId() {
+    public String getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(int adminId) {
+    public void setAdminId(String adminId) {
         this.adminId = adminId;
     }
 
     @Override
     public String toString() {
         return "GuestBook{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", askContent='" + askContent + '\'' +
                 ", userId=" + userId +
                 ", ProductId=" + ProductId +
@@ -101,7 +103,22 @@ public class    GuestBook {
                 ", isReply=" + isReply +
                 ", replyContent='" + replyContent + '\'' +
                 ", replyTime=" + replyTime +
-                ", adminId=" + adminId +
+                ", adminId='" + adminId + '\'' +
                 '}';
+    }
+
+    public GuestBook(String id, String askContent, User userId, Product productId, Date createdTime, int isReply, String replyContent, Date replyTime, String adminId) {
+        this.id = id;
+        this.askContent = askContent;
+        this.userId = userId;
+        ProductId = productId;
+        this.createdTime = createdTime;
+        this.isReply = isReply;
+        this.replyContent = replyContent;
+        this.replyTime = replyTime;
+        this.adminId = adminId;
+    }
+
+    public GuestBook() {
     }
 }

@@ -7,9 +7,9 @@ import java.util.Date;
 
 @Alias("PayInfoEntity")
 public class PayInfo {
-    private int id;
-    private int userId;
-    private OrderEntity orderNo;
+    private String id;
+    private User userId;
+    private Order orderNo;
     private int payPlatform;
     private String platformNumber;
     private String platformStatus;
@@ -18,27 +18,41 @@ public class PayInfo {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
-    public int getId() {
+    @Override
+    public String toString() {
+        return "PayInfo{" +
+                "id='" + id + '\'' +
+                ", userId=" + userId +
+                ", orderNo=" + orderNo +
+                ", payPlatform=" + payPlatform +
+                ", platformNumber='" + platformNumber + '\'' +
+                ", platformStatus='" + platformStatus + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
-    public OrderEntity getOrderNo() {
+    public Order getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(OrderEntity orderNo) {
+    public void setOrderNo(Order orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -82,17 +96,17 @@ public class PayInfo {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "PayInfo{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", orderNo=" + orderNo +
-                ", payPlatform=" + payPlatform +
-                ", platformNumber='" + platformNumber + '\'' +
-                ", platformStatus='" + platformStatus + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public PayInfo() {
+    }
+
+    public PayInfo(String id, User userId, Order orderNo, int payPlatform, String platformNumber, String platformStatus, Date createTime, Date updateTime) {
+        this.id = id;
+        this.userId = userId;
+        this.orderNo = orderNo;
+        this.payPlatform = payPlatform;
+        this.platformNumber = platformNumber;
+        this.platformStatus = platformStatus;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 }

@@ -1,30 +1,63 @@
 package com.zhong.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 
+/**
+ * 产品表
+ */
+@Alias("ProductEntity")
 public class Product {
-    private int id;
+    private String id;
+    /** 分类id 对应mmall_categoryb表的主键 */
     private Category categoryId;
     private String name;
-    //商品副标题
+    /** 商品副标题*/
     private String subtitle;
+    /**产品主图 url路径*/
     private String mainImage;
+    /**图片地址 json格式 扩展用     */
     private String subImages;
     private String detail;
     private int price;
+    /**库存*/
     private int stock;
     private int status;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     public Product() {
     }
 
-    public int getId() {
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", mainImage='" + mainImage + '\'' +
+                ", subImages='" + subImages + '\'' +
+                ", detail='" + detail + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -113,6 +146,21 @@ public class Product {
     }
 
     public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Product(String id, Category categoryId, String name, String subtitle, String mainImage, String subImages, String detail, int price, int stock, int status, Date createTime, Date updateTime) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.name = name;
+        this.subtitle = subtitle;
+        this.mainImage = mainImage;
+        this.subImages = subImages;
+        this.detail = detail;
+        this.price = price;
+        this.stock = stock;
+        this.status = status;
+        this.createTime = createTime;
         this.updateTime = updateTime;
     }
 }

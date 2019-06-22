@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhong.dao.CategoryMapper">
+    <sql id="allParam">
+        id,parent_id,name,status,sort_order,create_time,update_time
+    </sql>
+
+    <select id="getCategoryList" resultType="CategoryEntity">
+        select * from mmall_category
+    </select>
+
+    <insert id="insertCategory" parameterType="CategoryEntity">
+        insert into mmall_category(
+        <include refid="allParam"/>
+        )
+        value (#{id},#{parentId},#{name},#{status},#{sortOrder},#{createTime},#{updateTime})
+    </insert>
+
+</mapper>

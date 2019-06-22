@@ -8,13 +8,14 @@ import java.util.Date;
 /**
  * 订单明细表
  */
-@Alias("OrderItemEntity")
-public class OrderItemEntity {
 
-    private int id;                 /*id*/
+@Alias("OrderItemEntity")
+public class OrderItem {
+
+    private String id;                 /*id*/
     private User userId;            /*用户id*/
-    private OrderEntity orderId;    /*订单id*/
-    private int productId;          /*商品id*/
+    private Order orderId;    /*订单id*/
+    private Product productId;          /*商品id*/
     private String productName;     /*商品名称*/
     private String productImage;    /*商品图片地址*/
     private int currentPrice;       /*生成订单时的商品单价 单位的分*/
@@ -25,11 +26,11 @@ public class OrderItemEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date updateTime;        /*更新时间*/
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,19 +42,19 @@ public class OrderItemEntity {
         this.userId = userId;
     }
 
-    public OrderEntity getOrderId() {
+    public Order getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(OrderEntity orderId) {
+    public void setOrderId(Order orderId) {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 
@@ -115,8 +116,8 @@ public class OrderItemEntity {
 
     @Override
     public String toString() {
-        return "OrderItemEntity{" +
-                "id=" + id +
+        return "OrderItem{" +
+                "id='" + id + '\'' +
                 ", userId=" + userId +
                 ", orderId=" + orderId +
                 ", productId=" + productId +
@@ -128,5 +129,22 @@ public class OrderItemEntity {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
+    }
+
+    public OrderItem() {
+    }
+
+    public OrderItem(String id, User userId, Order orderId, Product productId, String productName, String productImage, int currentPrice, int quantity, int totalPrice, Date createTime, Date updateTime) {
+        this.id = id;
+        this.userId = userId;
+        this.orderId = orderId;
+        this.productId = productId;
+        this.productName = productName;
+        this.productImage = productImage;
+        this.currentPrice = currentPrice;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 }
