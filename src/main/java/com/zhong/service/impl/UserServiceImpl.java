@@ -5,19 +5,21 @@ import com.zhong.dao.UserLoginDao;
 import com.zhong.entity.User;
 import com.zhong.service.UserService;
 import com.zhong.utils.IdGen;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Service("UserService")
 public class UserServiceImpl implements UserService {
-    private final UserDao userDao;
-    private final UserLoginDao userLoginDao;
+    @Resource
+    UserDao userDao;
 
-    public UserServiceImpl(UserDao userDao, UserLoginDao userLoginDao) {
-        this.userDao = userDao;
-        this.userLoginDao = userLoginDao;
-    }
+    @Resource
+    UserLoginDao userLoginDao;
+
 
     @Override
     public User getUserByUserId(int userId) {
