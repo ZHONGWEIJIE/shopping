@@ -11,8 +11,11 @@ public interface UserMapper {
 
     List<User> getAll();
 
-    User getOne(Integer id);
+    //User getOne(Integer id);
 
+    User queryUserById(int id);
+    void updateUser(User user);
+    void deleteUser(int id);
 //    void insert(User user);
 //
 //    void update(User user);

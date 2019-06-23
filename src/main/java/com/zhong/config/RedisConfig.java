@@ -26,6 +26,7 @@ public class RedisConfig extends CachingConfigurerSupport{
     public CacheManager cacheManager( RedisConnectionFactory connectionFactory) {
         RedisCacheManager rcm = RedisCacheManager.create(connectionFactory);
         return rcm;
+
     }
     /**
      * retemplate相关配置
