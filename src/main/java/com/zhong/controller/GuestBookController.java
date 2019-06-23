@@ -3,7 +3,7 @@ package com.zhong.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zhong.entity.GuestBook;
 import com.zhong.service.GuestBookService;
-import com.zhong.utils.EmailUtils;
+
 import com.zhong.utils.Result;
 import com.zhong.utils.StatysInfo;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +23,9 @@ public class GuestBookController {
 
 
     @RequestMapping("/sendEmail")
-    public String sendEmail() throws JsonProcessingException {
-        boolean isSend = EmailUtils.sendEmail("这是一封测试邮件", new String[]{"997041772@qq.com"}, null, "<h3><a href='http://www.baidu.com'>百度一下，你就知道</a></h3>", null);
-        return "发送邮件:" + isSend;
+    public String sendEmail(String name ,String password) throws JsonProcessingException {
+
+        return "发送邮件:"+name+"   "+password;
     }
 
     @GetMapping({"/getAll/{adminId}" })

@@ -12,11 +12,21 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
+
+    @Override
+    public List<User> listAll() {
+        List<User> list = userMapper.getAll();
+        for (User user:list) {
+            System.out.println(user);
+        }
+        return null;
+    }
 
     @Override
     public User checkLogin(int id,String username, String password,HttpServletResponse response) {
@@ -31,6 +41,41 @@ public class UserServiceImpl implements UserService {
 
         }
         return null;
+    }
+
+    @Override
+    public User ListUser(int id) {
+
+        return null;
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        User user = userMapper.queryUserById(id);
+        if(user!=null){
+            userMapper.deleteUser(id);
+        }
+        else{
+            System.out.println("have no this user!");
+        }
+
+    }
+
+    @Override
+    public void updateUser(int id,String password) {
+        User user = userMapper.queryUserById(id);
+        if(user!=null){
+            if(!user.getPassword().equals(password)){
+                user.setPassword(password);
+            }
+            else{
+                System.out.println("same password!");
+            }
+        }
+        else{
+            System.out.println("have no this user!");
+        }
+
     }
 
 //    @Resource

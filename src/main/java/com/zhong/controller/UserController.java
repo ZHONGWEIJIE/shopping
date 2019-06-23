@@ -22,9 +22,25 @@ public class UserController {
 
 
     @RequestMapping(value = "/login")
-    public String login() {
-        return "login";
+    public String login(String username,String password) {
+        return "login1231232"+password+username;
     }
+    @RequestMapping(value = "/delete")
+    public String deleteUser(int id){
+        userService.deleteUser(id);
+        return "delete";
+    }
+    @RequestMapping(value = "/updatePassword")
+    public String updatePassword(int id,String username){
+        userService.updateUser(id,username);
+        return "update";
+    }
+    @RequestMapping(value = "/userlist")
+    public String userList(){
+        userService.listAll();
+        return "userlist";
+    }
+
 
 //    @RequestMapping(value = "/outLogin")
 //    public String outLogin(HttpServletRequest request, HttpServletResponse response) {
