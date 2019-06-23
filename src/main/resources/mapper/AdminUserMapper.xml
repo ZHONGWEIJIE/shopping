@@ -8,43 +8,44 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, name, age
+        id, username, age
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />
-        FROM user
+        FROM mmall_user
     </select>
 
-    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List" />
-        FROM user
+    <select id="queryUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT *
+
+        FROM mmall_user
         WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="UserEntity">
         INSERT INTO
-        user
-        (id,name,age)
+        mmall_user
+        (id,username,password,email,phone,recipient,question,answer,role,createTime,updateTime,gender)
         VALUES
-        (#{id},#{name}, #{age})
+        (#{id},#{username},#{password},#{email},#{phone},#{nickname},#{question},#{answer},#{role},#{createTime},#{updateTime},#{gender},#{age})
     </insert>
-
+    <!--do-->
     <update id="update" parameterType="UserEntity">
         UPDATE
-        user
+        mmall_user
         SET
-        <if test="name != null">name = #{name},</if>
+        <if test="username != null">name = #{username},</if>
         <if test="age != null">age = #{age},</if>
+
         WHERE
         id = #{id}
     </update>
 
-    <delete id="delete" parameterType="java.lang.Integer">
+    <delete id="deleteUser" parameterType="java.lang.Integer">
         DELETE FROM
-        user
+        mmall_user
         WHERE
         id =#{id}
     </delete>

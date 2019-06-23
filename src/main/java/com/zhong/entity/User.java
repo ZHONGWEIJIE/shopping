@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String nickname;
-    private String recipient;
+
     private String question;
     private String answer;
     private int role;
@@ -39,7 +39,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.recipient = recipient;
+        this.nickname = recipient;
         this.question = question;
         this.answer = answer;
         this.role = role;
@@ -89,11 +89,11 @@ public class User implements Serializable {
     }
 
     public String getRecipient() {
-        return recipient;
+        return nickname;
     }
 
     public void setRecipient(String recipient) {
-        this.recipient = recipient;
+        this.nickname = recipient;
     }
 
     public String getQuestion() {
@@ -152,7 +152,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", recipient='" + recipient + '\'' +
+                ", recipient='" + nickname + '\'' +
                 ", question='" + question + '\'' +
                 ", answer='" + answer + '\'' +
                 ", role=" + role +
