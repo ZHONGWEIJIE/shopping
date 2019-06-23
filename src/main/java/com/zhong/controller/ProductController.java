@@ -4,6 +4,8 @@ import com.zhong.entity.Product;
 import com.zhong.service.ProductService;
 import com.zhong.utils.Result;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+
+@RequestMapping("/Product")
 public class ProductController {
 
 
@@ -20,7 +24,7 @@ public class ProductController {
     ProductService productService;
 
 
-    @GetMapping("/productList")
+    @GetMapping("/getAll")
     public Result getProductList(){
         // TODO 用户判定
         List<Product> productList = productService.getProductList();
@@ -30,10 +34,10 @@ public class ProductController {
     }
 
 
-    @GetMapping("/product")
-    public Result insertProduct(HttpServletRequest request,Product product){
-        System.out.println(product.getId());
-        return  null;
+    @GetMapping("/postProduct")
+    public Result insertProduct(Product product){
+        productService.insertProduct(product);
+        return  Result.makeSuccessResult();
     }
 
 

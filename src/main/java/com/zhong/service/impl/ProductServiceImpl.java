@@ -20,6 +20,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void insertProduct(Product product) {
+
+
         productMapper.insertProduct(product);
     }
 }
