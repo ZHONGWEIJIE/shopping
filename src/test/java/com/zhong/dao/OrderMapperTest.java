@@ -43,4 +43,9 @@ public class OrderMapperTest {
         List<Order> list = orderMapper.selectOrderByStatus(0);
         System.out.println(list.size());
     }
+
+    @Test
+    public void deleteOrder() {
+        orderMapper.deleteOrder(1);
+    }
 }

@@ -65,4 +65,8 @@
         <if test="updateTime!=null">update_time=#{updateTime}</if>
         WHERE id = #{id};
     </update>
+
+    <delete id="deleteOrder" parameterType="int" >
+        delete from  mmall_order where order_no = #{orderNo};
+    </delete>
 </mapper>

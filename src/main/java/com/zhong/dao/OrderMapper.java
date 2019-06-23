@@ -13,7 +13,7 @@ public interface OrderMapper {
 
     public void updateOrder(Order order);
 
-    public void deleteOrder(Order order);
+    public void deleteOrder(int orderNo);
 
     /**
      * 根据订单id查询订单
