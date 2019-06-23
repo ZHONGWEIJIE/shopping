@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User checkLogin(int id,String username, String password,HttpServletResponse response) {
+    public User checkLogin(String id,String username, String password,HttpServletResponse response) {
         User user = userMapper.queryUserById(id);
         if(user != null && user.getPassword().equals(password)){
             String loginToken = IdGen.uuid();
@@ -44,13 +44,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User ListUser(int id) {
+    public User ListUser(String id) {
 
         return null;
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(String id) {
         User user = userMapper.queryUserById(id);
         if(user!=null){
             userMapper.deleteUser(id);
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(int id,String password) {
+    public void updateUser(String id,String password) {
         User user = userMapper.queryUserById(id);
         if(user!=null){
             if(!user.getPassword().equals(password)){

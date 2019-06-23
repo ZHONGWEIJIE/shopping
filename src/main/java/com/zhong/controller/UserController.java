@@ -26,12 +26,12 @@ public class UserController {
         return "login1231232"+password+username;
     }
     @RequestMapping(value = "/delete")
-    public String deleteUser(int id){
+    public String deleteUser(String id){
         userService.deleteUser(id);
         return "delete";
     }
     @RequestMapping(value = "/updatePassword")
-    public String updatePassword(int id,String username){
+    public String updatePassword(String id,String username){
         userService.updateUser(id,username);
         return "update";
     }
