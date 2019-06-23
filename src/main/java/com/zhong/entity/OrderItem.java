@@ -9,7 +9,7 @@ import java.util.Date;
  * 订单明细表
  */
 
-@Alias("OrderItemEntity")
+@Alias(value="OrderItemEntity")
 public class OrderItem {
 
     private String id;                 /*id*/

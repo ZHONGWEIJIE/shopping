@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 产品表
  */
-@Alias("ProductEntity")
+@Alias(value="ProductEntity")
 public class Product {
     private String id;
     /** 分类id 对应mmall_categoryb表的主键 */

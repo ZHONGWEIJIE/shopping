@@ -31,7 +31,7 @@ public class ShoppingApplicationTests {
 
 	@Test
 	public void queryUserById(){
-		int id = 100;
+		String id = "100";
 		User user = userMapper.queryUserById(id);
 		System.out.println(user);
 

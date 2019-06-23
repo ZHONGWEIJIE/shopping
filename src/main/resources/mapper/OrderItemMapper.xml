@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhong.dao.OrderItemMapper">
+
+    <sql id="orderItemParams">
+        id,user_id,order_no,product_id,product_name,product_image,current_unit_price,
+        quantity,total_price,create_time,update_time
+    </sql>
+
+    <resultMap id="orderItemMap" type="com.zhong.entity.OrderItem">
+        <id column="id" property="id" />
+        <result column="product_name" property="productName"/>
+        <result column="product_image"  property="productImage"/>
+        <result column="current_unit_price" property="currentPrice"/>
+        <result column="quantity"  property="quantity"/>
+        <result column="total_price"  property="totalPrice"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="userId" column="user_id" javaType="com.zhong.entity.User"
+                     select="com.zhong.dao.UserMapper.queryUserById"/>
+        <association property="orderId" column="order_no" javaType="com.zhong.entity.Order"
+                     select="com.zhong.dao.OrderMapper.selectOrderByOrderNo"/>
+        <!--<association property="productId" column="product_id" javaType="com.zhong.entity.Product"-->
+                     <!--select="com.zhong.dao.ProductMapper."/>-->
+    </resultMap>
+
+    <select id="selectOrderItemByOrderNo" parameterType="String"  resultMap="orderItemMap">
+        SELECT id,user_id,order_no,product_name,product_image,current_unit_price,
+        quantity,total_price,create_time,update_time FROM mmall_order_item
+         WHERE order_no = #{orderNo};
+    </select>
+
+    <insert id="addOrderItem" parameterType="OrderItemEntity">
+        insert into mmall_order_item(
+        <include refid="orderItemParams"/>
+        )
+        value (#{id},#{userId.id},#{orderId.orderNo},#{productId.id},#{productName},
+        #{productImage},#{currentPrice},#{quantity},#{totalPrice},#{createTime},
+        #{updateTime});
+    </insert>
+
+    <update id="updateOrderItem" parameterType="OrderItemEntity">
+        UPDATE mmall_order_item
+        SET
+        <if test="userId!=null">user_id=#{userId.id},</if>
+        <if test="orderId!=null">order_no=#{orderId.orderNo},</if>
+        <if test="productId!=null">product_id=#{productId.id},</if>
+        <if test="productName!=null">product_name=#{productName},</if>
+        <if test="productImage!=null">product_image=#{productImage},</if>
+        <if test="currentPrice!=null">current_unit_price=#{currentPrice},</if>
+        <if test="quantity!=null">quantity=#{quantity},</if>
+        <if test="totalPrice!=null">total_price=#{totalPrice},</if>
+        <if test="createTime!=null">create_time=#{createTime},</if>
+        <if test="updateTime!=null">update_time=#{updateTime}</if>
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteOrderItem" parameterType="String" >
+        delete from  mmall_order_item where order_no = #{orderId.orderNo};
+    </delete>
+</mapper>

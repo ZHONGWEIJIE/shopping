@@ -6,7 +6,7 @@ import org.apache.ibatis.type.Alias;
 import java.util.Date;
 
 
-@Alias("CartEntity")
+@Alias(value="CartEntity")
 public class Cart {
     private String id;
     private User userId;

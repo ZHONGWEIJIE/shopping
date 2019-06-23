@@ -5,12 +5,12 @@ import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-@Alias("GuestBookEntity")
+@Alias(value="GuestBookEntity")
 public class GuestBook {
     private String id;
     private  String askContent;
     private User userId;
-    private Product ProductId;
+    private Product productId;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     private int isReply;
@@ -45,11 +45,11 @@ public class GuestBook {
     }
 
     public Product getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(Product productId) {
-        ProductId = productId;
+        this.productId = productId;
     }
 
     public Date getCreatedTime() {
@@ -98,7 +98,7 @@ public class GuestBook {
                 "id='" + id + '\'' +
                 ", askContent='" + askContent + '\'' +
                 ", userId=" + userId +
-                ", ProductId=" + ProductId +
+                ", ProductId=" + productId +
                 ", createdTime=" + createdTime +
                 ", isReply=" + isReply +
                 ", replyContent='" + replyContent + '\'' +
@@ -111,7 +111,7 @@ public class GuestBook {
         this.id = id;
         this.askContent = askContent;
         this.userId = userId;
-        ProductId = productId;
+        productId = productId;
         this.createdTime = createdTime;
         this.isReply = isReply;
         this.replyContent = replyContent;
