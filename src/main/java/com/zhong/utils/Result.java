@@ -86,9 +86,9 @@ public class Result {
 //    /**
 //     * 返回权限拒绝result
 //     */
-//    public static Result makePermissionDeniedResult(){
-//        return new Result(PERMISSION_DENIED_CODE,PERMISSION_DENIED_MESSAGE,null);
-//    }
+    public static Result makePermissionDeniedResult(){
+        return new Result(PERMISSION_DENIED_CODE,new StatysInfo(PERMISSION_DENIED_MESSAGE),null);
+    }
 //
 //    public static Result makePermissionDeniedResult(String message){
 //        return new Result(PERMISSION_DENIED_CODE,message,null);
