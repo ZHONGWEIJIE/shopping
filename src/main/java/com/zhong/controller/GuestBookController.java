@@ -22,11 +22,11 @@ public class GuestBookController {
     GuestBookService guestBookService;
 
 
-    @RequestMapping("/sendEmail")
-    public String sendEmail() throws JsonProcessingException {
-        boolean isSend = EmailUtils.sendEmail("这是一封测试邮件", new String[]{"997041772@qq.com"}, null, "<h3><a href='http://www.baidu.com'>百度一下，你就知道</a></h3>", null);
-        return "发送邮件:" + isSend;
-    }
+//    @RequestMapping("/sendEmail")
+//    public Result sendEmail() throws JsonProcessingException {
+//        EmailUtils.sendEmail("1473055523@qq.com","帅帅最厉害","帅帅不是猪猪，堃莉是猪猪");
+//        return Result.makeSuccessResult(new StatysInfo("Request Success","发送成功"));
+//    }
 
     @GetMapping({"/getAll/{adminId}" })
     public Result selectGuestBook(@PathVariable String adminId){
