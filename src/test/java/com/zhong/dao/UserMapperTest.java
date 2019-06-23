@@ -24,7 +24,7 @@ public class UserMapperTest {
     }
     @Test
     public void queryUserById(){
-        int id = 0;
+        String id = "0";
         User user = userMapper.queryUserById(id);
         System.out.println(user);
 

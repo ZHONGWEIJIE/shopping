@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-@Alias("ShippingEntity")
+@Alias(value="ShippingEntity")
 public class Shipping {
     private String id;
     private User userId;

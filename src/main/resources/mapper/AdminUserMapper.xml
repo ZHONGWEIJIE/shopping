@@ -17,7 +17,7 @@
         FROM mmall_user
     </select>
 
-    <select id="queryUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="queryUserById" parameterType="String" resultMap="BaseResultMap">
         SELECT *
 
         FROM mmall_user

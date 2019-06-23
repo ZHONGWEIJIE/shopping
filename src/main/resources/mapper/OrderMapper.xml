@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhong.dao.OrderMapper">
+
+    <sql id="orderParams">
+        id,order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,
+        send_time,end_time,close_time,create_time,update_time
+    </sql>
+
+    <resultMap id="orderMap" type="com.zhong.entity.Order">
+        <id column="id" property="id" />
+        <result column="order_no"  property="orderNo"/>
+        <result column="payment"  property="payment"/>
+        <result column="payment_type" property="paymentType"/>
+        <result column="postage"  property="postage"/>
+        <result column="status" property="status"/>
+        <result column="payment_time"  property="paymentTime"/>
+        <result column="send_time"  property="sendTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="userId" column="user_id" javaType="com.zhong.entity.User"
+                     select="com.zhong.dao.UserMapper.queryUserById"/>
+        <!--<association property="shippingId" column="shipping_id" javaType="com.zhong.entity.Shipping"-->
+         <!--select=""/>-->
+    </resultMap>
+
+    <select id="selectOrderByOrderNo" parameterType="int"  resultMap="orderMap">
+        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+         send_time,end_time,close_time,create_time,update_time FROM mmall_order
+         WHERE order_no = #{orderNo};
+    </select>
+
+    <select id="selectOrderByStatus" parameterType="int" resultMap="orderMap">
+        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+         send_time,end_time,close_time,create_time,update_time FROM mmall_order
+         WHERE status = #{status};
+    </select>
+
+    <insert id="addOrder" parameterType="OrderEntity">
+        insert into mmall_order(
+        <include refid="orderParams"/>
+        )
+        value (#{id},#{orderNo},#{userId.id},#{shippingId.id},#{payment},#{paymentType},
+        #{postage},#{status},#{paymentTime},#{sendTime},#{endTime},#{closeTime},#{createTime},
+        #{updateTime});
+    </insert>
+
+    <update id="updateOrder" parameterType="OrderEntity">
+        UPDATE mmall_order
+        SET
+        <if test="userId!=null">user_id=#{userId.id},</if>
+        <if test="orderNo!=null">order_no=#{orderNo},</if>
+        <if test="shippingId!=null">shipping_id=#{shippingId.id},</if>
+        <if test="payment!=null">payment=#{payment},</if>
+        <if test="paymentType!=null">payment_type=#{paymentType},</if>
+        <if test="postage!=null">postage=#{postage},</if>
+        <if test="status!=null">status=#{status},</if>
+        <if test="paymentTime!=null">payment_time=#{paymentTime},</if>
+        <if test="sendTime!=null">send_time=#{sendTime},</if>
+        <if test="endTime!=null">end_time=#{endTime},</if>
+        <if test="closeTime!=null">close_time=#{closeTime},</if>
+        <if test="createTime!=null">create_time=#{createTime},</if>
+        <if test="updateTime!=null">update_time=#{updateTime}</if>
+        WHERE id = #{id};
+    </update>
+</mapper>

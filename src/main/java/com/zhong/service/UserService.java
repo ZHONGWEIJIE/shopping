@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserService {
     //User getUserByUserId(int userId);
-    User checkLogin(int id, String username, String password,HttpServletResponse response);
+    User checkLogin(String id, String username, String password,HttpServletResponse response);
 
     /**
      * 退出登录

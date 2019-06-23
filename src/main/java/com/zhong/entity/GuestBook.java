@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-@Alias("GuestBookEntity")
+@Alias(value="GuestBookEntity")
 public class GuestBook {
     private String id;
     private  String askContent;

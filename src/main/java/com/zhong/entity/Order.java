@@ -10,11 +10,11 @@ import java.util.Date;
 /**
  * 订单表
  */
-@Alias("OrderEntity")
+@Alias(value="OrderEntity")
 public class Order {
 
     private String id;             /*订单id*/
-    private Order orderNo;       /*订单号*/
+    private int orderNo;       /*订单号*/
     private User userId;        /*用户id*/
     private Shipping shippingId;    /*地址id*/
     private int payment;        /*钱，单位是分*/
@@ -62,11 +62,11 @@ public class Order {
         this.id = id;
     }
 
-    public Order getOrderNo() {
+    public int getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(Order orderNo) {
+    public void setOrderNo(int orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -169,7 +169,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, Order orderNo, User userId, Shipping shippingId, int payment, int paymentType, int postage, int status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
+    public Order(String id, int orderNo, User userId, Shipping shippingId, int payment, int paymentType, int postage, int status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
         this.id = id;
         this.orderNo = orderNo;
         this.userId = userId;

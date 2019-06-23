@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 分类表
  */
-@Alias("CategoryEntity")
+@Alias(value="CategoryEntity")
 public class Category {
     private String id;
     /** 类别id 当id=0时说明是根节点，一级类别*/

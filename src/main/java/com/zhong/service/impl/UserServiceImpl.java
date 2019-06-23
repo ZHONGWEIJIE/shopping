@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User checkLogin(int id,String username, String password,HttpServletResponse response) {
+    public User checkLogin(String id,String username, String password,HttpServletResponse response) {
         User user = userMapper.queryUserById(id);
         if(user != null && user.getPassword().equals(password)){
             String loginToken = IdGen.uuid();

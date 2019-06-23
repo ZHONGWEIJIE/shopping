@@ -3,7 +3,7 @@ package com.zhong.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zhong.entity.GuestBook;
 import com.zhong.service.GuestBookService;
-import com.zhong.utils.EmailUtils;
+
 import com.zhong.utils.Result;
 import com.zhong.utils.StatysInfo;
 import org.springframework.web.bind.annotation.*;
