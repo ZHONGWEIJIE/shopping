@@ -24,7 +24,7 @@
                      <!--select="com.zhong.dao.ProductMapper."/>-->
     </resultMap>
 
-    <select id="selectOrderItemByOrderNo" parameterType="int"  resultMap="orderItemMap">
+    <select id="selectOrderItemByOrderNo" parameterType="String"  resultMap="orderItemMap">
         SELECT id,user_id,order_no,product_name,product_image,current_unit_price,
         quantity,total_price,create_time,update_time FROM mmall_order_item
          WHERE order_no = #{orderNo};
@@ -55,7 +55,7 @@
         WHERE id = #{id};
     </update>
 
-    <delete id="deleteOrderItem" parameterType="int" >
+    <delete id="deleteOrderItem" parameterType="String" >
         delete from  mmall_order_item where order_no = #{orderId.orderNo};
     </delete>
 </mapper>

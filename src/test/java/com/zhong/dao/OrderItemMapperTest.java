@@ -25,7 +25,7 @@ public class OrderItemMapperTest {
     public void addOrderItem() {
         OrderItem orderItem = new OrderItem();
         orderItem.setId(IdGen.uuid());
-        orderItem.setOrderId(orderMapper.selectOrderByOrderNo(1));
+        orderItem.setOrderId(orderMapper.selectOrderByOrderNo("1"));
         orderItem.setUserId(userMapper.queryUserById("123"));
         orderItem.setCreateTime(new Date());
         orderItemMapper.addOrderItem(orderItem);
@@ -33,14 +33,14 @@ public class OrderItemMapperTest {
 
     @Test
     public void selectOne() {
-        OrderItem orderItem = orderItemMapper.selectOrderItemByOrderNo(1);
+        OrderItem orderItem = orderItemMapper.selectOrderItemByOrderNo("1");
         orderItem.setUpdateTime(new Date());
         orderItemMapper.updateOrderItem(orderItem);
     }
 
     @Test
     public void deletOne() {
-        OrderItem orderItem = orderItemMapper.selectOrderItemByOrderNo(1);
+        OrderItem orderItem = orderItemMapper.selectOrderItemByOrderNo("1");
         orderItemMapper.deleteOrderItem(orderItem);
     }
 }

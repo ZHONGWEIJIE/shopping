@@ -2,6 +2,7 @@ package com.zhong.dao;
 
 import com.zhong.entity.Order;
 import com.zhong.utils.IdGen;
+import com.zhong.utils.OrderGen;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +24,7 @@ public class OrderMapperTest {
     public void addOrder() {
         Order order = new Order();
         order.setId(IdGen.uuid());
-        order.setOrderNo(1);
+        order.setOrderNo("1");
 //        order.setUserId();
         order.setPayment(1220);
         orderMapper.addOrder(order);
@@ -31,7 +32,7 @@ public class OrderMapperTest {
 
     @Test
     public void updateOrder() {
-        Order order = orderMapper.selectOrderByOrderNo(1);
+        Order order = orderMapper.selectOrderByOrderNo("1");
         order.setCreateTime(new Date());
         order.setUpdateTime(new Date());
         orderMapper.updateOrder(order);
@@ -46,6 +47,7 @@ public class OrderMapperTest {
 
     @Test
     public void deleteOrder() {
-        orderMapper.deleteOrder(1);
+        orderMapper.deleteOrder("1");
+
     }
 }

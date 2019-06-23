@@ -1,8 +1,12 @@
 package com.zhong.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class OrderDto {
 
-    private int orderNo;            /*订单号*/
+    private String  orderNo;            /*订单号*/
     private String nickName;        /* 用户昵称*/
     private String receiverName;    /*收件人*/
     private String address;         /*收货地址*/
@@ -12,13 +16,14 @@ public class OrderDto {
     private int quantity;           /*购买数量*/
     private double price;           /*金额*/
     private int status;             /*订单状态*/
-    private String updateTime;      /*更新时间*/
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date updateTime;      /*更新时间*/
 
-    public int getOrderNo() {
+    public String getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(int orderNo) {
+    public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -94,11 +99,11 @@ public class OrderDto {
         this.status = status;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

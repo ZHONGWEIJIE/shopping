@@ -13,14 +13,14 @@ public interface OrderMapper {
 
     public void updateOrder(Order order);
 
-    public void deleteOrder(int orderNo);
+    public void deleteOrder(String orderNo);
 
     /**
      * 根据订单id查询订单
      * @param orderNo
      * @return
      */
-    public  Order selectOrderByOrderNo(@Param("orderNo") int orderNo);
+    public  Order selectOrderByOrderNo(@Param("orderNo") String orderNo);
 
     /**
      * 根据订单状态查询订单

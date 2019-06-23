@@ -18,7 +18,7 @@ public interface OrderItemMapper {
      * @param orderNo
      * @return
      */
-    public OrderItem selectOrderItemByOrderNo(@Param("orderNo") int orderNo);
+    public OrderItem selectOrderItemByOrderNo(@Param("orderNo") String orderNo);
 
 
 

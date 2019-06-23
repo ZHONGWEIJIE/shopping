@@ -14,7 +14,7 @@ import java.util.Date;
 public class Order {
 
     private String id;             /*订单id*/
-    private int orderNo;       /*订单号*/
+    private String orderNo;       /*订单号*/
     private User userId;        /*用户id*/
     private Shipping shippingId;    /*地址id*/
     private int payment;        /*钱，单位是分*/
@@ -62,11 +62,11 @@ public class Order {
         this.id = id;
     }
 
-    public int getOrderNo() {
+    public String getOrderNo() {
         return orderNo;
     }
 
-    public void setOrderNo(int orderNo) {
+    public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
     }
 
@@ -169,7 +169,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, int orderNo, User userId, Shipping shippingId, int payment, int paymentType, int postage, int status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
+    public Order(String id, String orderNo, User userId, Shipping shippingId, int payment, int paymentType, int postage, int status, Date paymentTime, Date sendTime, Date endTime, Date closeTime, Date createTime, Date updateTime) {
         this.id = id;
         this.orderNo = orderNo;
         this.userId = userId;
