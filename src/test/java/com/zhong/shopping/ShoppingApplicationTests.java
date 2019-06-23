@@ -1,7 +1,9 @@
 package com.zhong.shopping;
 
 import com.zhong.dao.ProductMapper;
+import com.zhong.dao.UserMapper;
 import com.zhong.entity.Product;
+import com.zhong.entity.User;
 import com.zhong.utils.Result;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShoppingApplicationTests {
-
+	@Resource
+	UserMapper userMapper;
 	@Resource
 	StringRedisTemplate stringRedisTemplate;
 	@Resource
@@ -26,6 +29,13 @@ public class ShoppingApplicationTests {
 
 
 
+	@Test
+	public void queryUserById(){
+		int id = 100;
+		User user = userMapper.queryUserById(id);
+		System.out.println(user);
+
+	}
 	@Test
 	public void contextLoads() {
 	}
