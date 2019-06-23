@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhong.dao.GuestBookMapper">
+
+    <resultMap id="GuestBookMap" type="com.zhong.entity.GuestBook">
+        <id column="id" property="id" />
+        <result column="ask_content"  property="askContent"/>
+
+        <result column="created_time"  property="createdTime"/>
+        <result column="is_reply" property="isReply"/>
+        <result column="reply_content"  property="replyContent"/>
+        <result column="reply_time"  property="replyTime"/>
+        <result column="admin_id" property="adminId"/>
+        <association property="userId" javaType="com.zhong.entity.User">
+            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+            <id property="id" column="id" />
+            <result property="username" column="username"  jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="recipient" column="recipient" jdbcType="VARCHAR"/>
+            <result property="question" column="question"  jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="answer" column="answer" jdbcType="VARCHAR"/>
+            <result property="role" column="role" jdbcType="INTEGER"/>
+            <result property="createTime" column="createTime" jdbcType="DATE"/>
+            <result property="updateTime" column="updateTime" jdbcType="DATE"/>
+            <result property="gender" column="gender" jdbcType="TINYINT"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+        </association>
+        <association property="productId" javaType="com.zhong.entity.Product">
+            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+            <id property="id" column="id" />
+
+            <result property="name" column="password" jdbcType="VARCHAR"/>
+            <result property="subtitle" column="subtitle" jdbcType="VARCHAR"/>
+            <result property="mainImage" column="main_image" jdbcType="VARCHAR"/>
+            <result property="subImages" column="sub_images" />
+            <result property="detail" column="detail"/>
+            <result property="price" column="price"  jdbcType="INTEGER"/>
+            <result property="stock" column="stock" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="DATE"/>
+            <result property="updateTime" column="update_time" jdbcType="DATE"/>
+            <association property="categoryId" javaType="com.zhong.entity.Category">
+                <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+                <id property="id" column="user_id" />
+                <result property="parentId" column="parent_id"  jdbcType="VARCHAR"/>
+                <result property="name" column="name" jdbcType="VARCHAR"/>
+                <result property="status" column="status" jdbcType="TINYINT"/>
+                <result property="sortOrder" column="sort_order" jdbcType="INTEGER"/>
+                <result property="createTime" column="create_time" jdbcType="DATE"/>
+                <result property="updateTime" column="update_time" jdbcType="DATE"/>
+            </association>
+        </association>
+    </resultMap>
+
+
+    <select id="selectGuestBookByAdminId" resultMap="GuestBookMap">
+        SELECT * FROM mmall_guestbook WHERE admin_id = #{adminId}
+    </select>
+
+    <select id="selectRoleByAdminId" resultType="Integer">
+        SELECT role FROM mmall_user WHERE username = #{userName}
+    </select>
+
+    <select id="selectGuestBookByAdminIdAndIsReply" resultMap="GuestBookMap">
+        SELECT
+        *
+         FROM mmall_guestbook WHERE admin_id=#{adminId} AND is_reply = #{isReply};
+    </select>
+
+    <update id="updateReplyById" >
+        UPDATE mmall_guestbook
+        SET is_reply = 1 ,reply_time = #{replyTimeDate},reply_content = #{replyContent}
+        WHERE id = #{id}
+    </update>
+</mapper>
