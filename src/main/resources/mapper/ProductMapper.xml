@@ -32,6 +32,10 @@
         <!--id,username,password,email,phone-->
     <!--</sql>-->
 
+    <select id="selectProductById" resultType="ProductEntity">
+    SELECT * from  mmall_product where id=#{id};
+  </select>
+
 
     <select id="getProductList" resultMap="productResltMap">
     SELECT

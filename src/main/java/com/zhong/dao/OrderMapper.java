@@ -29,4 +29,9 @@ public interface OrderMapper {
      */
     public List<Order> selectOrderByStatus(@Param("status") int status);
 
+    /**
+     * 查询所有订单
+     * @return
+     */
+    public List<Order> selectAllOrder();
 }

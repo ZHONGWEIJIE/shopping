@@ -27,5 +27,8 @@ public class ProductMapperTest {
 
     @Test
     public void getProductList() {
+        productMapper.selectProductById("123");
     }
+
+
 }
