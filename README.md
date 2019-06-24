@@ -139,23 +139,23 @@
 
 | case              | 获取订单列表                                                 |
 | ----------------- | ------------------------------------------------------------ |
-| HTTP method       | `GET /orderList`                                             |
+| HTTP method       | `GET /getOrderList/{status}`                                             |
 | data              | { orderList: { 订单id, 用户昵称, 收件人, 联系电话, 商品名称, 商品数量, 订单金额, 订单状态id, 订单状态标签, 更新时间, 收货地址 }`*` } |
-| url               |                                                              |
+| url               |  /Order/getOrderList/{status}                                                            |
 | status/statusInfo |                                                              |
 
 | case              | 更新订单信息                                                 |
 | ----------------- | ------------------------------------------------------------ |
 | HTTP method       | `POST /orderInfo?orderId`                                    |
 | data              | { orderInfo: { 订单id, 商品名称, 商品单价, 订单金额,  订单状态id, 商品数量} } |
-| url               |                                                              |
+| url               |  /updateOrder                                               |
 | status/statusInfo |                                                              |
 
 | case              | 删除订单信息                |
 | ----------------- | --------------------------- |
 | HTTP method       | `DELETE /orderInfo?orderId` |
 | data              | 无                          |
-| url               |                             |
+| url               | /deleteOrder                |
 | status/statusInfo |                             |
 
 ---
