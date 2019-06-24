@@ -14,6 +14,7 @@ public interface UserMapper {
     //User getOne(Integer id);
 
     User queryUserById(String id);
+    User queryUserByUserName(String username);
     void updateUser(User user);
     void deleteUser(String id);
 //    void insert(User user);

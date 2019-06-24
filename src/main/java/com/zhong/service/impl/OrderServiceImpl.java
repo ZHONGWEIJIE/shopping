@@ -78,8 +78,18 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Order> getAllOrder() {
+        return orderMapper.selectAllOrder();
+    }
+
+    @Override
     public List<OrderDto> getOrderByStatus(int status) {
-        List<Order> orderList = orderMapper.selectOrderByStatus(status);
+        List<Order> orderList;
+        if(status==-1) {
+            orderList = getAllOrder();
+        }else {
+            orderList = orderMapper.selectOrderByStatus(status);
+        }
         List<OrderDto> list = new ArrayList<>();
         for(Order order:orderList) {
             OrderDto orderDto = new OrderDto();

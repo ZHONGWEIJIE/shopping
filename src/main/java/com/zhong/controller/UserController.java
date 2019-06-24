@@ -22,8 +22,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/login")
-    public String login(String username,String password) {
-        return "login1231232"+password+username;
+    public String login(String username,String password,HttpServletResponse response) {
+        userService.checkLogin(username,password,response);
+        return "login";
     }
     @RequestMapping(value = "/delete")
     public String deleteUser(String id){

@@ -28,9 +28,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+
+
     @Override
-    public User checkLogin(String id,String username, String password,HttpServletResponse response) {
-        User user = userMapper.queryUserById(id);
+    public User checkLogin(String username, String password,HttpServletResponse response) {
+        User user = userMapper.queryUserByUserName(username);
         if(user != null && user.getPassword().equals(password)){
             String loginToken = IdGen.uuid();
             Cookie cookie = new Cookie("loginToken",loginToken);

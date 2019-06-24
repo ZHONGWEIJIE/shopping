@@ -14,7 +14,9 @@ public interface UserService {
      */
     List<User> listAll();
 
-    User checkLogin(String id, String username, String password,HttpServletResponse response);
+
+
+    User checkLogin(String username, String password,HttpServletResponse response);
     /**
      * 用户管理列表
      */
