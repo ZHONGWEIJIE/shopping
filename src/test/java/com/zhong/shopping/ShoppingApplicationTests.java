@@ -87,4 +87,11 @@ public class ShoppingApplicationTests {
             System.out.println(user);
         }
     }
+    @Test
+	public void  queryUserByUserName() {
+		String username = "jack";
+		User user = userMapper.queryUserByUserName(username);
+		System.out.println(user);
+	}
+
 }

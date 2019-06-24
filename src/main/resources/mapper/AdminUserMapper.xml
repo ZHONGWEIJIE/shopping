@@ -24,6 +24,13 @@
         WHERE id = #{id}
     </select>
 
+    <select id="queryUserByUserName" parameterType="String" resultMap="BaseResultMap">
+        SELECT *
+
+        FROM mmall_user
+        WHERE username = #{username}
+    </select>
+
     <insert id="insert" parameterType="UserEntity">
         INSERT INTO
         mmall_user
