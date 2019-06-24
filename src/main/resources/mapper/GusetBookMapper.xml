@@ -72,7 +72,7 @@
 
     <update id="updateReplyById" >
         UPDATE mmall_guestbook
-        SET is_reply = 1 ,reply_time = #{replyTimeDate},reply_content = #{replyContent}
+        SET is_reply = 2 ,reply_time = #{replyTimeDate},reply_content = #{replyContent}
         WHERE id = #{id}
     </update>
 </mapper>

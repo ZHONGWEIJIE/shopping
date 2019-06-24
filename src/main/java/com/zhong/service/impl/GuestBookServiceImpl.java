@@ -27,8 +27,8 @@ public class GuestBookServiceImpl implements GuestBookService {
 
     @Override
     public boolean isAdmin(String userName) {
-        int flag = gusetBookMapper.selectRoleByAdminId(userName);
-        if(flag == 1){
+        Integer flag = gusetBookMapper.selectRoleByAdminId(userName);
+        if(flag.equals(2) ){
             return true;
         }else {
             return false;

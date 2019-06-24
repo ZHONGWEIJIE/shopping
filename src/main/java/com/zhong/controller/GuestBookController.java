@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/GuestBook")
 public class GuestBookController {
 
@@ -30,6 +31,7 @@ public class GuestBookController {
 }
 
     @GetMapping({"/getAll/{adminId}" })
+
     public Result selectGuestBook(@PathVariable String adminId){
         if (guestBookService.isAdmin(adminId)) {
             Map<String, Object> map = guestBookService.selectGuestBookByAdminId(adminId);
@@ -44,10 +46,10 @@ public class GuestBookController {
     public Result selectGuestBookByAdminIdAndIsReply(@PathVariable String determine,String adminId){
         Map<String, Object> map = new HashMap<>();
         if (determine.equals("true")||determine=="true"){
-            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,1));
+            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,2));
             return Result.makeSuccessResult(map);
         }else if (determine.equals("false")||determine == "false"){
-            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,0));
+            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,1));
             return Result.makeSuccessResult(map);
         }else {
             map.put("guestBookList",new ArrayList<GuestBook>());
