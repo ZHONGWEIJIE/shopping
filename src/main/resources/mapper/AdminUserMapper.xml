@@ -17,7 +17,7 @@
         FROM mmall_user
     </select>
 
-    <select id="queryUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="queryUserById" parameterType="String" resultMap="BaseResultMap">
         SELECT *
 
         FROM mmall_user
@@ -32,13 +32,14 @@
         (#{id},#{username},#{password},#{email},#{phone},#{nickname},#{question},#{answer},#{role},#{createTime},#{updateTime},#{gender},#{age})
     </insert>
     <!--do-->
-    <update id="update" parameterType="UserEntity">
+    <update id="updateUser" parameterType="UserEntity">
         UPDATE
         mmall_user
         SET
-        <if test="username != null">name = #{username},</if>
-        <if test="age != null">age = #{age},</if>
-
+        <if test="password != null">password = #{password},</if>
+        <if test="email != null">email = #{email},</if>
+        <if test="phone != null">phone = #{phone},</if>
+        <if test="nickname != null">nickname = #{nickname},</if>
         WHERE
         id = #{id}
     </update>

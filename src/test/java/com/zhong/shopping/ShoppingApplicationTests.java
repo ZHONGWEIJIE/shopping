@@ -31,7 +31,7 @@ public class ShoppingApplicationTests {
 
 	@Test
 	public void queryUserById(){
-		int id = 100;
+		String id = "100";
 		User user = userMapper.queryUserById(id);
 		System.out.println(user);
 
@@ -78,4 +78,13 @@ public class ShoppingApplicationTests {
 		List<Product> lst = productMapper.getProductList();
 		System.out.println(lst);
 	}
+	@Test
+    public void  listAll(){
+
+         List<User> list = userMapper.getAll();
+        for (User user:list
+             ) {
+            System.out.println(user);
+        }
+    }
 }

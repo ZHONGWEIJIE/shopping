@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-@Alias("PayInfoEntity")
+@Alias(value="PayInfoEntity")
 public class PayInfo {
     private String id;
     private User userId;

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Alias("UserEntity")
+@Alias(value="UserEntity")
 public class User implements Serializable {
 
 
@@ -142,6 +142,22 @@ public class User implements Serializable {
 
     public void setGender(short gender) {
         this.gender = gender;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Result {
 
 
 
-    private String statusCode;
+    private String status;
 
     private StatysInfo statysInfo;
 
@@ -86,9 +86,9 @@ public class Result {
 //    /**
 //     * 返回权限拒绝result
 //     */
-//    public static Result makePermissionDeniedResult(){
-//        return new Result(PERMISSION_DENIED_CODE,PERMISSION_DENIED_MESSAGE,null);
-//    }
+    public static Result makePermissionDeniedResult(){
+        return new Result(PERMISSION_DENIED_CODE,new StatysInfo(PERMISSION_DENIED_MESSAGE),null);
+    }
 //
 //    public static Result makePermissionDeniedResult(String message){
 //        return new Result(PERMISSION_DENIED_CODE,message,null);
@@ -129,18 +129,18 @@ public class Result {
 
     }
 
-    private Result(String statusCode, StatysInfo statysInfo, Map<String, Object> resultMap) {
-        this.statusCode = statusCode;
+    private Result(String status, StatysInfo statysInfo, Map<String, Object> resultMap) {
+        this.status = status;
         this.statysInfo = statysInfo;
         this.resultMap = resultMap;
     }
 
-    public String getStatusCode() {
-        return statusCode;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public StatysInfo getStatysInfo() {
