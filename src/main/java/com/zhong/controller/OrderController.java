@@ -28,8 +28,8 @@ public class OrderController {
      * @param status
      * @return
      */
-    @GetMapping({"/getOrderList"})
-    public Result getOrderList(int status) {
+    @GetMapping({"/getOrderList/{status}"})
+    public Result getOrderList(@PathVariable int status) {
         Map<String, Object> map = new HashMap<>();
         List<OrderDto> orderDtoList = orderService.getOrderByStatus(status);
         if(orderDtoList!=null&&orderDtoList.size()!=0) {

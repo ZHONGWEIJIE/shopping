@@ -22,24 +22,24 @@
         <result column="update_time" property="updateTime"/>
         <association property="userId" column="user_id" javaType="com.zhong.entity.User"
                      select="com.zhong.dao.UserMapper.queryUserById"/>
-        <!--<association property="shippingId" column="shipping_id" javaType="com.zhong.entity.Shipping"-->
-         <!--select=""/>-->
+        <association property="shippingId" column="shipping_id" javaType="com.zhong.entity.Shipping"
+         select="com.zhong.dao.ShippingMapper.queryById"/>
     </resultMap>
 
     <select id="selectOrderByOrderNo" parameterType="String"  resultMap="orderMap">
-        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+        SELECT id,order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,
          send_time,end_time,close_time,create_time,update_time FROM mmall_order
          WHERE order_no = #{orderNo};
     </select>
 
     <select id="selectOrderByStatus" parameterType="int" resultMap="orderMap">
-        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+        SELECT id,order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,
          send_time,end_time,close_time,create_time,update_time FROM mmall_order
          WHERE status = #{status};
     </select>
 
     <select id="selectAllOrder" resultMap="orderMap">
-        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+        SELECT id,order_no,user_id,shipping_id,payment,payment_type,postage,status,payment_time,
          send_time,end_time,close_time,create_time,update_time FROM mmall_order;
     </select>
 
