@@ -22,11 +22,12 @@ public class GuestBookController {
     GuestBookService guestBookService;
 
 
-//    @RequestMapping("/sendEmail")
-//    public Result sendEmail() throws JsonProcessingException {
-//        EmailUtils.sendEmail("1473055523@qq.com","帅帅最厉害","帅帅不是猪猪，堃莉是猪猪");
-//        return Result.makeSuccessResult(new StatysInfo("Request Success","发送成功"));
-//    }
+    @GetMapping({"/getAll" })
+    public Map<String,Object> test( ){
+        Map<String,Object> map = new HashMap<>();
+        map.put("guestBookLisr",guestBookService.selectGuestBookByAdminId("2"));
+        return map;
+}
 
     @GetMapping({"/getAll/{adminId}" })
     public Result selectGuestBook(@PathVariable String adminId){
