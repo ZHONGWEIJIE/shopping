@@ -29,6 +29,12 @@ public interface OrderService {
     public  Order getOrderByOrderNo(String orderNo);
 
     /**
+     * 获取所有订单
+     * @return
+     */
+    public List<Order> getAllOrder();
+
+    /**
      * 根据订单状态查询订单
      * @param status
      * @return

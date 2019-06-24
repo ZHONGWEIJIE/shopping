@@ -38,6 +38,11 @@
          WHERE status = #{status};
     </select>
 
+    <select id="selectAllOrder" resultMap="orderMap">
+        SELECT id,order_no,user_id,payment,payment_type,postage,status,payment_time,
+         send_time,end_time,close_time,create_time,update_time FROM mmall_order;
+    </select>
+
     <insert id="addOrder" parameterType="OrderEntity">
         insert into mmall_order(
         <include refid="orderParams"/>

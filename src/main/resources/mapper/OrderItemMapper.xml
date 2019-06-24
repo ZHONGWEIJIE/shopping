@@ -20,12 +20,12 @@
                      select="com.zhong.dao.UserMapper.queryUserById"/>
         <association property="orderId" column="order_no" javaType="com.zhong.entity.Order"
                      select="com.zhong.dao.OrderMapper.selectOrderByOrderNo"/>
-        <!--<association property="productId" column="product_id" javaType="com.zhong.entity.Product"-->
-                     <!--select="com.zhong.dao.ProductMapper."/>-->
+        <association property="productId" column="product_id" javaType="com.zhong.entity.Product"
+                     select="com.zhong.dao.ProductMapper.selectProductById"/>
     </resultMap>
 
     <select id="selectOrderItemByOrderNo" parameterType="String"  resultMap="orderItemMap">
-        SELECT id,user_id,order_no,product_name,product_image,current_unit_price,
+        SELECT id,user_id,order_no,product_id,product_name,product_image,current_unit_price,
         quantity,total_price,create_time,update_time FROM mmall_order_item
          WHERE order_no = #{orderNo};
     </select>
