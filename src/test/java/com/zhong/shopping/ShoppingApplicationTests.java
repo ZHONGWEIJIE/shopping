@@ -1,9 +1,9 @@
 package com.zhong.shopping;
 
+import com.zhong.dao.GuestBookMapper;
 import com.zhong.dao.ProductMapper;
-import com.zhong.dao.UserMapper;
+import com.zhong.entity.GuestBook;
 import com.zhong.entity.Product;
-import com.zhong.entity.User;
 import com.zhong.utils.Result;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,24 +20,20 @@ import java.util.concurrent.TimeUnit;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShoppingApplicationTests {
-	@Resource
-	UserMapper userMapper;
+
 	@Resource
 	StringRedisTemplate stringRedisTemplate;
 	@Resource
 	ProductMapper productMapper;
 
+	@Resource
+	GuestBookMapper guestBookMapper;
 
 
-	@Test
-	public void queryUserById(){
-		String id = "100";
-		User user = userMapper.queryUserById(id);
-		System.out.println(user);
-
-	}
 	@Test
 	public void contextLoads() {
+
+
 	}
 
 	@Test
@@ -78,13 +74,4 @@ public class ShoppingApplicationTests {
 		List<Product> lst = productMapper.getProductList();
 		System.out.println(lst);
 	}
-	@Test
-    public void  listAll(){
-
-         List<User> list = userMapper.getAll();
-        for (User user:list
-             ) {
-            System.out.println(user);
-        }
-    }
 }
