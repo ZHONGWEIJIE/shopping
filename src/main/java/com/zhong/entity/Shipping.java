@@ -1,6 +1,7 @@
 package com.zhong.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
