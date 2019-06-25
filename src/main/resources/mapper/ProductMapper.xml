@@ -3,27 +3,18 @@
 <mapper namespace="com.zhong.dao.ProductMapper">
     <resultMap id="productResltMap" type="ProductEntity">
         <id property="id" column="id"/>
-        <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="subtitle" column="subtitle" jdbcType="VARCHAR"/>
-        <result property="mainImage" column="main_image" jdbcType="VARCHAR"/>
-        <result property="subImages" column="sub_images" javaType="String"/>
-        <result property="detail" column="detail" javaType="String"/>
-        <result property="price" column="price/" jdbcType="INTEGER"/>
-        <result property="stock" column="stock" jdbcType="INTEGER"/>
-        <result property="status" column="status" jdbcType="INTEGER"/>
-        <result property="createTime" column="create_time" jdbcType="DATE"/>
-        <result property="updateTime" column="update_time" jdbcType="DATE"/>
-        <association property="categoryId" javaType="com.zhong.entity.Category">
-            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
-            <id property="id" column="user_id" />
-            <result property="parentId" column="parent_id"  jdbcType="VARCHAR"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="TINYINT"/>
-            <result property="sortOrder" column="sort_order" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="DATE"/>
-            <result property="updateTime" column="update_time" jdbcType="DATE"/>
+        <result property="name" column="name" />
+        <result property="subtitle" column="subtitle" />
+        <result property="mainImage" column="main_image" />
+        <result property="subImages" column="sub_images" />
+        <result property="detail" column="detail" />
+        <result property="price" column="price/" />
+        <result property="stock" column="stock" />
+        <result property="status" column="status" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+        <association property="categoryId" column="category_id" javaType="com.zhong.entity.Category" select ="com.zhong.dao.CategoryMapper.getCategoryById">
         </association>
-
 
 
     </resultMap>
@@ -51,6 +42,7 @@
         p.status,
         p.create_time,
         p.update_time,
+        c.id,
         c.parent_id,
         c.name,
         c.status,
@@ -67,5 +59,32 @@
         value (#{id},#{categoryId.id},#{name},#{subtitle},#{mainImage},#{subImages},#{detail},#{price},#{stock},#{status},#{createTime},#{updateTime})
     </insert>
 
+
+    <!--<select id="getProductListByCategoryId" parameterType="productResltMap" >-->
+        <!--SELECT-->
+        <!--p.id,-->
+        <!--p.category_id,-->
+        <!--p.name,-->
+        <!--p.subtitle,-->
+        <!--p.main_image,-->
+        <!--p.sub_images,-->
+        <!--p.detail,-->
+        <!--p.price,-->
+        <!--p.stock,-->
+        <!--p.status,-->
+        <!--p.create_time,-->
+        <!--p.update_time,-->
+        <!--c.id-->
+        <!--c.parent_id,-->
+        <!--c.name,-->
+        <!--c.status,-->
+        <!--c.sort_order,-->
+        <!--c.create_time,-->
+        <!--c.update_time-->
+        <!--FROM-->
+        <!--`mmall_product` p-->
+        <!--LEFT JOIN `mmall_category` c ON p.category_id = c.id-->
+        <!--where p.category_id = #{categoryId.id}-->
+    <!--</select>-->
 
 </mapper>

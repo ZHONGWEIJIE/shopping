@@ -14,14 +14,20 @@ public class ProductServiceImpl implements ProductService {
     ProductMapper productMapper;
 
     @Override
-    public List<Product> getProductList() {
-        return productMapper.getProductList();
+    public List<Product> getProductList(String categoryId) {
+        if(categoryId!=null && "-1".equals(categoryId)){
+            return productMapper.getProductList();
+        }
+        else{
+            return productMapper.getProductListByCategoryId(categoryId);
+        }
+
     }
 
     @Override
     public void insertProduct(Product product) {
 
-
+        //对
         productMapper.insertProduct(product);
     }
 }

@@ -17,4 +17,6 @@ public interface ProductMapper    {
      * @return 商品列表
      */
     List<Product> getProductList();
+
+    List<Product> getProductListByCategoryId(String CategoryId);
 }

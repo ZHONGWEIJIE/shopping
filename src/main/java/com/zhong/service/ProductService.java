@@ -10,7 +10,9 @@ public interface ProductService {
      * 获取所有的商品
      * @return
      */
-    public List<Product> getProductList();
+    public List<Product> getProductList(String categoryId);
+
+
 
 
 

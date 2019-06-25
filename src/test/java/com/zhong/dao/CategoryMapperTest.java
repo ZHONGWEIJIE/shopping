@@ -33,4 +33,7 @@ public class CategoryMapperTest {
         List<Category> list = categoryMapper.getCategoryList();
         System.out.println(list);
     }
+    public  void getCategoryByIdTest(){
+        categoryMapper.getCategoryById("100001");
+    }
 }
