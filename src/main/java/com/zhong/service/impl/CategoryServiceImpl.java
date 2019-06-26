@@ -3,6 +3,7 @@ package com.zhong.service.impl;
 import com.zhong.dao.CategoryMapper;
 import com.zhong.entity.Category;
 import com.zhong.service.CategoryService;
+import com.zhong.utils.IdGen;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +16,12 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryMapper categoryMapper;
 
     @Override
-    public void insertCategory(Category category) {
+    public void insertCategory(String name) {
+        Category category   = new Category();
+        category.setName(name);
+        category.setId(IdGen.uuid());
+        category.setSortOrder(1);
+        category.setParentId("0");
         categoryMapper.insertCategory(category);
     }
 

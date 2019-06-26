@@ -31,9 +31,11 @@ public class ProductController {
     }
 
 
-    @GetMapping("/postProduct")
+    @PostMapping("/postProduct")
     public Result insertProduct(Product product){
-        productService.insertProduct(product);
+        System.out.println(product);
+//        productService.insertProduct(product);
+
         return  Result.makeSuccessResult();
     }
 

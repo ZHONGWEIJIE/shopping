@@ -1,6 +1,7 @@
 package com.zhong.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.zhong.entity.Category;
 import com.zhong.service.CategoryService;
 import com.zhong.utils.Result;
@@ -20,11 +21,18 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("/getAll")
-    public Result getCategoryList(){
+    public Result getCategoryList() {
         List<Category> categoryList = categoryService.getCategoryList();
-        Map<String,Object> map = new HashMap<>();
-        map.put("categoryList",categoryList);
+        Map<String, Object> map = new HashMap<>();
+        map.put("categoryList", categoryList);
         return Result.makeSuccessResult(map);
+    }
+
+    @PostMapping("/post")
+    public Result postCategory( String name) {
+        System.out.println(name);
+        categoryService.insertCategory(name);
+        return Result.makeSuccessResult();
     }
 
 }
