@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/shopping")
+@SessionAttributes("user")
 public class UserController {
 
     @Resource
