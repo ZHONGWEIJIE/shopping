@@ -12,6 +12,6 @@ public interface ShippingMapper {
     /**
      * 根据id查询收货记录
      */
-    Shipping queryById(String id);
+    Shipping queryById(String userId);
 
 }

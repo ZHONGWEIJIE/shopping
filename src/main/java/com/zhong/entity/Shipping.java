@@ -1,15 +1,15 @@
 package com.zhong.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
 @Alias(value="ShippingEntity")
 public class Shipping {
+
     private String id;
-    private User userId;
+    private String userId;
     private String receiverName;
     private String receiverPhone;
     private String receiverMobile;
@@ -34,11 +34,11 @@ public class Shipping {
         this.id = id;
     }
 
-    public User getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -126,7 +126,7 @@ public class Shipping {
     public String toString() {
         return "Shipping{" +
                 "id='" + id + '\'' +
-                ", userId=" + userId +
+                ", userId='" + userId + '\'' +
                 ", receiverName='" + receiverName + '\'' +
                 ", receiverPhone='" + receiverPhone + '\'' +
                 ", receiverMobile='" + receiverMobile + '\'' +

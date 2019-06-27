@@ -17,7 +17,7 @@ public class ShippingServiceImpl implements ShippingService {
 
 
     @Override
-    public Shipping insertShipping(String id, User userId, String receiverName, String receiverPhone, String receiverMobile, String receiverProvince, String receverCity, String receiverDistrict, String receiverAddress, String receiverZip, Date createTime, Date updateTime) {
+    public Shipping insertShipping(String id, String userId, String receiverName, String receiverPhone, String receiverMobile, String receiverProvince, String receverCity, String receiverDistrict, String receiverAddress, String receiverZip, Date createTime, Date updateTime) {
         Shipping shipping = new Shipping();
         shipping.setId(id);
         shipping.setUserId(userId);
@@ -36,9 +36,9 @@ public class ShippingServiceImpl implements ShippingService {
     }
 
     @Override
-    public Shipping queryShipping(String id) {
+    public String queryShipping(String id) {
         Shipping shipping = shippingMapper.queryById(id);
-        return shipping;
-
+        String address = shipping.getReceiverCity() + shipping.getReceiverDistrict() + shipping.getReceiverAddress();
+        return address;
     }
 }

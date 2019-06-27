@@ -22,63 +22,64 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listAll() {
         List<User> list = userMapper.getAll();
-        for (User user:list) {
-            System.out.println(user);
-        }
-        return null;
-    }
-
-
-
-    @Override
-    public User checkLogin(String username, String password,HttpServletResponse response) {
-        User user = userMapper.queryUserByUserName(username);
-        if(user != null && user.getPassword().equals(password)){
-            String loginToken = IdGen.uuid();
-            Cookie cookie = new Cookie("loginToken",loginToken);
-            cookie.setPath("/");
-            cookie.setMaxAge(60 * 60 * 24 * 3);
-            response.addCookie(cookie);
-            return user;
-
-        }
-        return null;
+        return list;
     }
 
     @Override
-    public User ListUser(String id) {
-
-        return null;
+    public User getUserByUserId(String userId) {
+        return userMapper.queryUserById(userId);
     }
 
     @Override
-    public void deleteUser(String id) {
-        User user = userMapper.queryUserById(id);
-        if(user!=null){
+    public Boolean deleteUser(String id) {
+        User user = getUserByUserId(id);
+        if (user != null) {
             userMapper.deleteUser(id);
+            return true;
+        } else {
+            return false;
         }
-        else{
-            System.out.println("have no this user!");
-        }
-
     }
 
-    @Override
-    public void updateUser(String id,String password) {
-        User user = userMapper.queryUserById(id);
-        if(user!=null){
-            if(!user.getPassword().equals(password)){
-                user.setPassword(password);
-            }
-            else{
-                System.out.println("same password!");
-            }
-        }
-        else{
-            System.out.println("have no this user!");
-        }
+//    @Override
+//    public User checkLogin(String username, String password,HttpServletResponse response) {
+//        User user = userMapper.queryUserByUserName(username);
+//        if(user != null && user.getPassword().equals(password)){
+//            String loginToken = IdGen.uuid();
+//            Cookie cookie = new Cookie("loginToken",loginToken);
+//            cookie.setPath("/");
+//            cookie.setMaxAge(60 * 60 * 24 * 3);
+//            response.addCookie(cookie);
+//            return user;
+//
+//        }
+//        return null;
+//    }
 
-    }
+//    @Override
+//    public User ListUser(String id) {
+//
+//        return null;
+//    }
+//
+
+//
+//    @Override
+//    public void updateUser(String id,String password) {
+//        User user = userMapper.queryUserById(id);
+//        if(user!=null){
+//            if(!user.getPassword().equals(password)){
+//                user.setPassword(password);
+//            }
+//            else{
+//                System.out.println("same password!");
+//            }
+//        }
+//        else{
+//            System.out.println("have no this user!");
+//        }
+//
+//    }
 
 //    @Resource
 //    UserDao userDao;
@@ -87,10 +88,7 @@ public class UserServiceImpl implements UserService {
 //    UserLoginDao userLoginDao;
 //
 //
-//    @Override
-//    public User getUserByUserId(int userId) {
-//        return null;
-//    }
+
 //
 //    @Override
 //    public User checkLogin(int userId, String password, HttpServletResponse response) {

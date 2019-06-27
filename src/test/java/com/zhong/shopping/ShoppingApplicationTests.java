@@ -29,13 +29,13 @@ public class ShoppingApplicationTests {
 
 
 
-	@Test
-	public void queryUserById(){
-		String id = "100";
-		User user = userMapper.queryUserById(id);
-		System.out.println(user);
+//	@Test
+//	public void queryUserById(){
+//		String id = "100";
+//		User user = userMapper.queryUserById(id);
+//		System.out.println(user);
 
-	}
+//	}
 	@Test
 	public void contextLoads() {
 	}
@@ -87,11 +87,11 @@ public class ShoppingApplicationTests {
             System.out.println(user);
         }
     }
-    @Test
-	public void  queryUserByUserName() {
-		String username = "jack";
-		User user = userMapper.queryUserByUserName(username);
-		System.out.println(user);
-	}
+//    @Test
+//	public void  queryUserByUserName() {
+//		String username = "jack";
+//		User user = userMapper.queryUserByUserName(username);
+//		System.out.println(user);
+//	}
 
 }

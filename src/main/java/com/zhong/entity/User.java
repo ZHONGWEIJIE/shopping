@@ -3,22 +3,16 @@ package com.zhong.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.ibatis.type.Alias;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Alias(value="UserEntity")
-public class User implements Serializable {
-
-
-
+public class User {
     private String id;
     private String username;
     private String password;
     private String email;
     private String phone;
     private String nickname;
-
     private String question;
     private String answer;
     private int role;
