@@ -5,13 +5,13 @@
         id,parent_id,name,status,sort_order,create_time,update_time
     </sql>
 
-
     <select id="getCategoryById" resultType="CategoryEntity">
         select
         <include refid="allParam"/>
         from mmall_category
         where id=#{id}
     </select>
+
     <select id="getCategoryList" resultType="CategoryEntity">
         select
         <include refid="allParam"/>

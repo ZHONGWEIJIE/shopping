@@ -3,88 +3,102 @@
 <mapper namespace="com.zhong.dao.ProductMapper">
     <resultMap id="productResultMap" type="ProductEntity">
         <id property="id" column="id"/>
-        <result property="name" column="name" />
-        <result property="subtitle" column="subtitle" />
-        <result property="mainImage" column="main_image" />
-        <result property="subImages" column="sub_images" />
-        <result property="detail" column="detail" />
-        <result property="price" column="price/" />
-        <result property="stock" column="stock" />
-        <result property="status" column="status" />
-        <result property="createTime" column="create_time" />
-        <result property="updateTime" column="update_time" />
-        <association property="categoryId" column="category_id" javaType="com.zhong.entity.Category" select ="com.zhong.dao.CategoryMapper.getCategoryById">
+        <result property="name" column="name"/>
+        <result property="subtitle" column="subtitle"/>
+        <result property="mainImage" column="main_image"/>
+        <result property="subImages" column="sub_images"/>
+        <result property="detail" column="detail"/>
+        <result property="price" column="price/"/>
+        <result property="stock" column="stock"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="categoryId" column="category_id" javaType="com.zhong.entity.Category"
+                     select="com.zhong.dao.CategoryMapper.getCategoryById">
         </association>
-
-
     </resultMap>
 
     <!--<sql id="all">-->
-        <!--id,username,password,email,phone-->
+    <!--id,username,password,email,phone-->
     <!--</sql>-->
 
     <select id="selectProductById" resultType="ProductEntity">
-    SELECT * from  mmall_product where id=#{id};
-  </select>
+        SELECT *
+        from mmall_product
+        where id = #{id};
+    </select>
 
 
     <select id="getProductList" resultMap="productResultMap">
-    SELECT
-        p.id,
-        p.category_id,
-        p.name,
-        p.subtitle,
-        p.main_image,
-        p.sub_images,
-        p.detail,
-        p.price,
-        p.stock,
-        p.status,
-        p.create_time,
-        p.update_time,
-        c.id,
-        c.parent_id,
-        c.name,
-        c.status,
-        c.sort_order,
-        c.create_time,
-        c.update_time
-        FROM
-        `mmall_product` p
-        LEFT JOIN `mmall_category` c ON p.category_id = c.id
-  </select>
+        SELECT p.id,
+               p.category_id,
+               p.name,
+               p.subtitle,
+               p.main_image,
+               p.sub_images,
+               p.detail,
+               p.price,
+               p.stock,
+               p.status,
+               p.create_time,
+               p.update_time,
+               c.id,
+               c.parent_id,
+               c.name,
+               c.status,
+               c.sort_order,
+               c.create_time,
+               c.update_time
+        FROM `mmall_product` p
+                 LEFT JOIN `mmall_category` c ON p.category_id = c.id
+    </select>
 
     <insert id="insertProduct" parameterType="ProductEntity">
-        insert into mmall_product(id,category_id,name,subtitle,main_image,sub_images,detail,price,stock,status,create_time,update_time)
-        value (#{id},#{categoryId.id},#{name},#{subtitle},#{mainImage},#{subImages},#{detail},#{price},#{stock},#{status},#{createTime},#{updateTime})
+        insert into mmall_product(id, category_id, name, subtitle, main_image, sub_images, detail, price, stock, status,
+                                  create_time, update_time)
+            value (#{id}, #{categoryId.id}, #{name}, #{subtitle}, #{mainImage}, #{subImages}, #{detail}, #{price},
+                   #{stock}, #{status}, #{createTime}, #{updateTime})
     </insert>
 
+    <update id="updateProduct" parameterType="ProductEntity">
+        UPDATE mmall_product
+        SET category_id=#{categoryId},
+            name=#{name},
+            detail=#{detail},
+            price=#{price},
+            stock=#{stock}
+        WHERE id = #{id}
+    </update>
 
     <select id="getProductListByCategoryId" resultMap="productResultMap">
-        SELECT
-        p.id,
-        p.category_id,
-        p.name,
-        p.subtitle,
-        p.main_image,
-        p.sub_images,
-        p.detail,
-        p.price,
-        p.stock,
-        p.status,
-        p.create_time,
-        p.update_time,
-        c.id,
-        c.parent_id,
-        c.name,
-        c.status,
-        c.sort_order,
-        c.create_time,
-        c.update_time
-        FROM
-        `mmall_product` p
-        LEFT JOIN `mmall_category` c ON p.category_id = c.id
+        SELECT p.id,
+               p.category_id,
+               p.name,
+               p.subtitle,
+               p.main_image,
+               p.sub_images,
+               p.detail,
+               p.price,
+               p.stock,
+               p.status,
+               p.create_time,
+               p.update_time,
+               c.id,
+               c.parent_id,
+               c.name,
+               c.status,
+               c.sort_order,
+               c.create_time,
+               c.update_time
+        FROM `mmall_product` p
+                 LEFT JOIN `mmall_category` c ON p.category_id = c.id
         where p.category_id = #{categoryId.id}
     </select>
+
+    <delete id="deleteProduct">
+        DELETE
+        FROM `mmall_product`
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

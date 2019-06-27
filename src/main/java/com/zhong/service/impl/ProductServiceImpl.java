@@ -3,6 +3,7 @@ package com.zhong.service.impl;
 import com.zhong.dao.ProductMapper;
 import com.zhong.entity.Product;
 import com.zhong.service.ProductService;
+import com.zhong.utils.IdGen;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,9 +26,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void insertProduct(Product product) {
+    public Product getProduct(String productId) {
+        return productMapper.selectProductById(productId);
+    }
 
-        //对
+    @Override
+    public void insertProduct(Product product) {
+        product.setId(IdGen.uuid());
         productMapper.insertProduct(product);
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+        productMapper.updateProduct(product);
+    }
+
+    @Override
+    public void deleteProduct(String id) {
+        productMapper.deleteProduct(id);
     }
 }

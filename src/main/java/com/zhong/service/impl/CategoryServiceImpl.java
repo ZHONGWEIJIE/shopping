@@ -17,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void insertCategory(String name) {
-        Category category   = new Category();
+        Category category  = new Category();
         category.setName(name);
         category.setId(IdGen.uuid());
         category.setSortOrder(1);

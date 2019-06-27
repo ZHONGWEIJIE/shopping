@@ -10,7 +10,11 @@ public interface ProductMapper    {
 
     void insertProduct(Product product);
 
-    public Product selectProductById(String id);
+    void updateProduct(Product product);
+
+    void deleteProduct(String id);
+
+    Product selectProductById(String id);
 
     /**
      * 根据分类id获取商品
