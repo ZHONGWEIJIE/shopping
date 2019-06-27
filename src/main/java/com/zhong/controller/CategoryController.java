@@ -1,7 +1,5 @@
 package com.zhong.controller;
 
-
-import com.alibaba.fastjson.JSONObject;
 import com.zhong.entity.Category;
 import com.zhong.service.CategoryService;
 import com.zhong.utils.Result;
@@ -29,7 +27,7 @@ public class CategoryController {
     }
 
     @PostMapping("/post")
-    public Result postCategory( String name) {
+    public Result postCategory(String name) {
         System.out.println(name);
         categoryService.insertCategory(name);
         return Result.makeSuccessResult();

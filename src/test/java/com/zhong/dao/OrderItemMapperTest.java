@@ -21,15 +21,15 @@ public class OrderItemMapperTest {
     @Resource
     OrderItemMapper orderItemMapper;
 
-    @Test
-    public void addOrderItem() {
-        OrderItem orderItem = new OrderItem();
-        orderItem.setId(IdGen.uuid());
-        orderItem.setOrderId(orderMapper.selectOrderByOrderNo("1"));
-        orderItem.setUserId(userMapper.queryUserById("123"));
-        orderItem.setCreateTime(new Date());
-        orderItemMapper.addOrderItem(orderItem);
-    }
+//    @Test
+////    public void addOrderItem() {
+////        OrderItem orderItem = new OrderItem();
+////        orderItem.setId(IdGen.uuid());
+////        orderItem.setOrderId(orderMapper.selectOrderByOrderNo("1"));
+////        orderItem.setUserId(userMapper.queryUserById("123"));
+////        orderItem.setCreateTime(new Date());
+////        orderItemMapper.addOrderItem(orderItem);
+////    }
 
     @Test
     public void selectOne() {

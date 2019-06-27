@@ -2,45 +2,53 @@ package com.zhong.controller;
 
 import com.zhong.entity.User;
 import com.zhong.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import com.zhong.utils.Result;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/shopping")
-@SessionAttributes("user")
 public class UserController {
 
     @Resource
     private UserService userService;
 
+    @GetMapping("/userlist")
+    public Result userList() {
+        List<User> userList = userService.listAll();
+        Map<String, Object> map = new HashMap<>();
+        map.put("userList", userList);
+        return Result.makeSuccessResult(map);
+    }
 
+    @DeleteMapping("/deleteUser")
+    public String deleteUser(String userId) {
+        if (userService.deleteUser(userId)) {
+            return Result.SUCCESS_CODE;
+        } else {
+            return Result.FAIL_CODE;
+        }
+    }
 
-    @RequestMapping(value = "/login")
-    public String login(String username,String password,HttpServletResponse response) {
-        userService.checkLogin(username,password,response);
-        return "login";
-    }
-    @RequestMapping(value = "/delete")
-    public String deleteUser(String id){
-        userService.deleteUser(id);
-        return "delete";
-    }
-    @RequestMapping(value = "/updatePassword")
-    public String updatePassword(String id,String username){
-        userService.updateUser(id,username);
-        return "update";
-    }
-    @RequestMapping(value = "/userlist")
-    public String userList(){
-        userService.listAll();
-        return "userlist";
-    }
+//    @RequestMapping(value = "/login")
+//    public String login(String username, String password, HttpServletResponse response) {
+//        userService.checkLogin(username, password, response);
+//        return "login";
+//    }
+//
+
+//
+//    @RequestMapping(value = "/updatePassword")
+//    public String updatePassword(String id, String username) {
+//        userService.updateUser(id, username);
+//        return "update";
+//    }
 
 
 //    @RequestMapping(value = "/outLogin")
