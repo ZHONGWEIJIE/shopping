@@ -161,3 +161,28 @@
 ---
 
 ### 留言管理
+| case              | 根据用户id获取所有留言        |
+| ----------------- | --------------------------- |
+| HTTP method       | `GET`                       |
+| data              | 无                          |
+| url               | /GuestBook/getAll/{adminId} |
+| urlParam          | adminId                     |
+| status/statusInfo |                             |
+
+| case              | 根据用户id获取已回复以及未回复内容    |
+| ----------------- | --------------------------- |
+| HTTP method       | `GET`                       |
+| data              | 无                          |
+| url               | /GuestBook/reply/{determine}|
+| urlParam          | determine (true 或 false)   |
+| param             | adminId                     |
+| status/statusInfo |                             |
+
+
+| case              | 回复客户                     |
+| ----------------- | --------------------------- |
+| HTTP method       | `GET` |
+| data              | 无                          |
+| url               | /GuestBook/reply/content    |
+| param             | String id （客户与商家问答的唯一id）,String content（回复内容）    |
+| status/statusInfo |                             |
