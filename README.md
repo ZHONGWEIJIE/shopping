@@ -181,7 +181,7 @@
 
 | case              | 回复客户                     |
 | ----------------- | --------------------------- |
-| HTTP method       | `GET` |
+| HTTP method       | `POST` |
 | data              | 无                          |
 | url               | /GuestBook/reply/content    |
 | param             | String id （客户与商家问答的唯一id）,String content（回复内容）    |
