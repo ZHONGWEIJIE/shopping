@@ -11,7 +11,7 @@ import java.util.List;
 public interface GuestBookMapper {
     public List<GuestBook> selectGuestBookByAdminId(@Param("adminId") String adminId);
 
-    public int selectRoleByAdminId(@Param("userName") String userName);
+    public int selectRoleByAdminId(@Param("id") String userName);
 
     public List<GuestBook> selectGuestBookByAdminIdAndIsReply
             (@Param("adminId") String adminId ,@Param("isReply")int isReply);

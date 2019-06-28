@@ -1,6 +1,7 @@
 package com.zhong.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
 /**
  * 产品表
  */
+@JsonIgnoreProperties(value = "handler")
 @Alias(value="ProductEntity")
 public class Product {
     private String id;
@@ -35,23 +37,7 @@ public class Product {
     public Product() {
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", categoryId=" + categoryId +
-                ", name='" + name + '\'' +
-                ", subtitle='" + subtitle + '\'' +
-                ", mainImage='" + mainImage + '\'' +
-                ", subImages='" + subImages + '\'' +
-                ", detail='" + detail + '\'' +
-                ", price=" + price +
-                ", stock=" + stock +
-                ", status=" + status +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
-    }
+
 
     public String getId() {
         return id;

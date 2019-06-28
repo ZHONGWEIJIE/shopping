@@ -16,6 +16,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin
+
 @RequestMapping("/GuestBook")
 public class GuestBookController {
 
@@ -26,7 +27,7 @@ public class GuestBookController {
     @GetMapping({"/getAll" })
     public Map<String,Object> test( ){
         Map<String,Object> map = new HashMap<>();
-        map.put("guestBookLisr",guestBookService.selectGuestBookByAdminId("2"));
+        map.put("guestBookLisr",guestBookService.selectGuestBookByAdminId("555"));
         return map;
 }
 
@@ -46,14 +47,26 @@ public class GuestBookController {
     public Result selectGuestBookByAdminIdAndIsReply(@PathVariable String determine,String adminId){
         Map<String, Object> map = new HashMap<>();
         if (determine.equals("true")||determine=="true"){
-            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,2));
-            return Result.makeSuccessResult(map);
+            List<GuestBook> guestBookList = guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,2);
+            System.out.println(guestBookList);
+            if(guestBookList ==null || guestBookList.size() == 0){
+                return Result.makeResult("100040",new StatysInfo("列表为空","暂时无人询问"));
+            }else {
+                map.put("guestBookList",guestBookList);
+                return Result.makeSuccessResult(map);
+            }
+
         }else if (determine.equals("false")||determine == "false"){
-            map.put("guestBookList",guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,1));
-            return Result.makeSuccessResult(map);
+            List<GuestBook> guestBookList = guestBookService.selectGuestBookByAdminIdAndIsReply(adminId,1);
+            if(guestBookList ==null || guestBookList.size() == 0){
+                return Result.makeResult("100041",new StatysInfo("列表为空","暂时无回复内容"));
+            }else {
+                map.put("guestBookList",guestBookList);
+                return Result.makeSuccessResult(map);
+            }
         }else {
             map.put("guestBookList",new ArrayList<GuestBook>());
-            return Result.makeResult("404",new StatysInfo("404 Not Found"),map);
+            return Result.makeResult("404",new StatysInfo("404 Not Found"));
         }
     }
 

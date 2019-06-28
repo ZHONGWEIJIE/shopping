@@ -1,10 +1,12 @@
 package com.zhong.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
+@JsonIgnoreProperties(value = "handler")
 @Alias(value="GuestBookEntity")
 public class GuestBook {
     private String id;
