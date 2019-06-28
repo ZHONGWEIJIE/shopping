@@ -10,7 +10,7 @@ public interface CategoryMapper {
 
     void insertCategory(Category category);
 
-    public Category selectCategoryById(String id);
+    Category getCategoryById(String id);
 
     List<Category> getCategoryList();
 }

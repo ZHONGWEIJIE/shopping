@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface UserService {
-    //User getUserByUserId(int userId);
-
 
 
     /**
@@ -14,21 +12,23 @@ public interface UserService {
      */
     List<User> listAll();
 
-
-
-    User checkLogin(String username, String password,HttpServletResponse response);
-    /**
-     * 用户管理列表
-     */
-    User ListUser(String id);
     /**
      * 删除用户
      */
-    void deleteUser(String id);
+    Boolean deleteUser(String id);
+
+    User getUserByUserId(String id);
+
+//    User checkLogin(String username, String password,HttpServletResponse response);
+    /**
+     * 用户管理列表
+     */
+//    User ListUser(String id);
+
     /**
      * 修改信息
      */
-    void updateUser(String id,String password);
+//    void updateUser(String id,String password);
     /**
      * 退出登录
      *

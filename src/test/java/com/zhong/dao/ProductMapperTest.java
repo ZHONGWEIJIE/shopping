@@ -18,6 +18,7 @@ public class ProductMapperTest {
 
     @Resource
     ProductMapper productMapper;
+
     @Test
     public void insertProduct() {
         Product product = new Product("1234555",new Category("123"),"123","123",
@@ -27,8 +28,14 @@ public class ProductMapperTest {
 
     @Test
     public void getProductList() {
-        productMapper.selectProductById("123");
+//        productMapper.selectProductById("123");
+        productMapper.getProductListByCategoryId("100001");
     }
 
 
+    @Test
+    public void deletePrdouct() {
+        String id = "904f65f9bf2d4dc29f002a0c3e607002";
+        productMapper.deleteProduct(id);
+    }
 }
